@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Content, Button, Text, Header, Body, Left, Right,Icon, Title} from 'native-base';
-import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity} from 'react-native'
+import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native';
+
+const shareOptions = {
+    title: 'Title',
+    message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
+    url: 'www.example.com',
+    subject: 'Subject'
+  };
 
 export default class ForYouStack extends Component {
     constructor(props) {
@@ -30,7 +37,12 @@ export default class ForYouStack extends Component {
         };
       }
 
-    onSharePress = () => {alert('Share')};
+    onClick = () => Share.share({
+        title: 'Title',
+        message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
+        url: 'www.example.com',
+        subject: 'Subject'
+      })
 
   render() {
     return (
@@ -47,7 +59,7 @@ export default class ForYouStack extends Component {
             </Body>
         
             <Right>
-                <Icon name="share" onPress={()=>{alert('clicked')}} style={{marginRight:10, color:'#676767'}}/>
+                <Icon name="share" onPress={()=>{this.onClick()}} style={{marginRight:10, color:'#676767'}}/>
             </Right>
         </Header>
         <Content>
