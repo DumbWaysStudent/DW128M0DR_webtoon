@@ -1,17 +1,24 @@
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator} from 'react-navigation-stack'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator} from 'react-navigation-stack';
 
-import BottomTabNavigator from './BottomTabNavigator'
+import BottomTabNavigator from './BottomTabNavigator';
+import Detail from '../screen/init/Detail';
 
-const MemberNavigator = createStackNavigator({
+const User = createStackNavigator({
     BottomTabNavigator : {
         screen : BottomTabNavigator,
         navigationOptions :{
             header : null
         }
-    }
+    },
+    DetailStack: {
+        screen : Detail,
+        navigationOptions :{
+            header : null
+        }
+    },
 })
 
 
 
-export default createAppContainer(MemberNavigator)
+export default createAppContainer(User)
