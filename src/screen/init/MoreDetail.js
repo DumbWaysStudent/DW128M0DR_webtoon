@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Content, Button, Text, Header, Body, Left, Right,Icon, Title} from 'native-base';
 import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native';
 
-export default class ForYouStack extends Component {
+export default class MoreDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +38,6 @@ export default class ForYouStack extends Component {
       })
 
   render() {
-    const {navigate} = this.props.navigation
     return (
       <Container style={{backgroundColor:'#E3E3E3'}}>
         <Header style={{backgroundColor:'#E3E3E3'}}>
@@ -49,7 +48,7 @@ export default class ForYouStack extends Component {
             </Left>
         
             <Body>
-                <Title style={{color:'#676767'}}>{this.props.navigation.getParam('title')}</Title>
+                 <Title style={{color:'#676767'}}>{this.props.navigation.getParam('title')}</Title>
             </Body>
         
             <Right>
@@ -57,34 +56,18 @@ export default class ForYouStack extends Component {
             </Right>
         </Header>
         <Content>
-        <SafeAreaView>
-            <Image style={{marginHorizontal:15, height:200, borderRadius:15, marginTop:10}} source={{uri : this.props.navigation.getParam('url')}}/>
-        </SafeAreaView>
-
-        <View>
-            <Text style={styles.title}>Episode</Text>
-        </View>
-
+       
         <SafeAreaView>
             <FlatList
                 data={this.state.banners}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>{navigate('MoreDetail', {title:item.title}) }}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
-                            <Image style={{width:100, height:100, padding:10, borderRadius:15}} source={{uri : item.url}}/>
-                        </View>
-                    
-                        <View style={{marginHorizontal:15, alignSelf:'center'}}>
-                            <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>{item.title}</Text>
-                            <View>
-                                <Text style={{color:'#676767', marginBottom:10}}> {item.publish}</Text>
-                            </View>
+                            <Image style={{width:330, height:400, padding:10, borderRadius:15}} source={{uri : item.url}}/>
                         </View>
                     </View> 
-                </TouchableOpacity>
                 }                
                 keyExtractor={(item, index) => index.toString()}
             />
