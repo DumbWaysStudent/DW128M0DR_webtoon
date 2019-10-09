@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Footer, FooterTab, Button, Text, Icon,Item, Input} from 'native-base';
+import { Container, Content, Button, Text, Icon,Item, Input} from 'native-base';
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import Slideshow from 'react-native-image-slider-show';
 
