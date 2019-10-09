@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import { Container, Content, Button, Text, Header, Body, Left, Right,Icon, Title} from 'native-base';
 import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native';
 
-const shareOptions = {
-    title: 'Title',
-    message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
-    url: 'www.example.com',
-    subject: 'Subject'
-  };
-
 export default class ForYouStack extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +32,7 @@ export default class ForYouStack extends Component {
 
     onClick = () => Share.share({
         title: 'Title',
-        message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
+        message: 'Share from Clone Webtoon ', // Note that according to the documentation at least one of "message" or "url" fields is required
         url: 'www.example.com',
         subject: 'Subject'
       })
