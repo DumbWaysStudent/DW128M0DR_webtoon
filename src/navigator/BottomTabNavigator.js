@@ -31,7 +31,7 @@ const BottomTabNavigator = createBottomTabNavigator({
         navigationOptions:{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ tintColor }) => (
-            <Icon type="FontAwesome" name="user" color={tintColor} style={{color:'#676767'}} />
+            <Icon type="FontAwesome" name="user" color={tintColor}/>
           )
         }
     }
