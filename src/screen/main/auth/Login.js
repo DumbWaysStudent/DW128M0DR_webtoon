@@ -41,14 +41,11 @@ export default class Login extends Component {
                   pwdNull:true
               })
           }
-      }
-      
-    handleLogin = () => {
-        
-    }
+      }  
 
 
     render(){
+        const {navigation} = this.props
         const check = (this.state.emailNull && this.state.pwdNull)
         return(
             <View style={styles.container}>
@@ -84,7 +81,7 @@ export default class Login extends Component {
                     
                     <TouchableOpacity
                         style={check?styles.btnDisable:styles.buttonContainer}
-                        onPress={this.handleLogin}
+                        onPress={() => navigation.navigate('Home')}
                         disabled={check ? true : false}>
 
                         <Text  style={styles.buttonText}>LOGIN</Text>
