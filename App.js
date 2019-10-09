@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Toon from './src/Toon';
+
+import Route from './src/Route';
 
 export default class App extends Component {
   state = {  }
   render() {
     return (
-      <Toon/>
+      <Route/>
     );
   }
 }
