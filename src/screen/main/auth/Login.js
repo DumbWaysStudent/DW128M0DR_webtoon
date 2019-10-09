@@ -41,11 +41,7 @@ export default class Login extends Component {
                   pwdNull:true
               })
           }
-      }
-      
-    handleLogin = () => {
-        
-    }
+      }  
 
 
     render(){

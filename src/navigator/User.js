@@ -5,7 +5,7 @@ import BottomTabNavigator from './BottomTabNavigator'
 
 
 
-const User = createStackNavigator({
+const MemberNavigator = createStackNavigator({
     BottomTabNavigator : {
         screen : BottomTabNavigator,
         navigationOptions :{
@@ -16,4 +16,4 @@ const User = createStackNavigator({
 
 
 
-export default createAppContainer(User)
+export default createAppContainer(MemberNavigator)

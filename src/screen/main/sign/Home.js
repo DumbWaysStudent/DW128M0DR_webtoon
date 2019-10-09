@@ -4,7 +4,7 @@ import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from '
 import Slideshow from 'react-native-image-slider-show';
 
 
-export default class ForYou extends Component {
+export default class ForYouStack extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -101,22 +101,6 @@ export default class ForYou extends Component {
         </SafeAreaView>
         
         </Content>
-        <Footer>
-          <FooterTab style={{backgroundColor:'#E3E3E3'}}>
-            <Button>
-            <Icon type="FontAwesome" name="braille" />
-              <Text active>For You</Text>
-            </Button>
-            <Button>
-                <Icon type="FontAwesome" name="star" />
-              <Text>Favorite</Text>
-            </Button>
-            <Button>
-                <Icon type="FontAwesome" name="user" />
-              <Text>Profile</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
       </Container>
     );
   }
