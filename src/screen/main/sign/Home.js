@@ -33,6 +33,7 @@ export default class ForYouStack extends Component {
       }
 
   render() {
+    const {navigate} = this.props.navigation
     return (
       <Container style={{backgroundColor:'#E3E3E3'}}>
           <Item style={{backgroundColor:'white', borderRadius:15, marginLeft:15, marginRight:15, marginVertical:10}}>
@@ -62,7 +63,7 @@ export default class ForYouStack extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={() => alert(item.title)}>
+                <TouchableOpacity onPress={()=>navigate('DetailStack', {url:item.url, title:item.title})}>
                     <View style={{marginHorizontal:10, backgroundColor:'white', borderRadius:10}}>
                         <Image style={{width:'100%', height:150, padding:10, borderTopLeftRadius:10, borderTopRightRadius:10}} source={{uri : item.url}}/>
                         <View style={{width : 150}}>
