@@ -1,8 +1,8 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import Guest from './navigator/Guest'
 
-const FirstNavigate = createSwitchNavigator({
+const Route = createSwitchNavigator({
     Guest
 })
 
-export default createAppContainer(FirstNavigate)
+export default createAppContainer(Route)
