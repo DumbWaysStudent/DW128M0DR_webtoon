@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import FirstNavigate from './navigator/FirstNavigate'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import Guest from './navigator/Guest'
 
-export default class Toon extends Component {
-    render() {
-        return (
-            <FirstNavigate/>
-        );
-    }
-}
+const FirstNavigate = createSwitchNavigator({
+    Guest
+})
+
+export default createAppContainer(FirstNavigate)
