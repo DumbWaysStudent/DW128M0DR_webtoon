@@ -55,7 +55,7 @@ export default class Login extends Component {
                 <View style={styles.loginContainer}>
                     <Image
                         style={styles.logo}
-                        source={require('../img/logoWebtoon.png')}
+                        source={require('../../../assets/image/logo.png')}
                     />
                 </View>
                     <TextInput 
