@@ -7,8 +7,6 @@ export default class AddButtonPress extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          add:'',
-          image:'https://wallpaperaccess.com/full/24525.jpg',
           banners : [{
             title: 'The Secret of Angel',
             url: 'https://cdn.imagecomics.com/assets/i/releases/461826/Mercy_issue1_cvr_147581a7be02116581a0f653533a26b1.jpg',
@@ -49,7 +47,7 @@ export default class AddButtonPress extends Component {
             </Body>
 
             <Right>
-                <Icon name="md-checkmark" onPress={()=>this.props.navigation.navigate('Home')} style={{marginRight:10, color:'#676767'}}/>
+                <Icon name="md-checkmark" onPress={this.add} style={{marginRight:10, color:'#676767'}}/>
             </Right>
 
         </Header>
@@ -82,7 +80,7 @@ export default class AddButtonPress extends Component {
             />
             <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress={this.add}>
+                onPress={()=>alert('add')}>
              <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>+Add Episode</Text>
             </TouchableOpacity>
         </SafeAreaView>

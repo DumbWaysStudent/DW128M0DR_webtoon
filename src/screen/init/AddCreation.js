@@ -7,8 +7,8 @@ export default class AddCreation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          position: 1,
-          interval: null,
+          add:'',
+          image:'https://wallpaperaccess.com/full/24525.jpg',
           banners : [{
             title: 'The Secret of Angel',
             url: 'https://cdn.imagecomics.com/assets/i/releases/461826/Mercy_issue1_cvr_147581a7be02116581a0f653533a26b1.jpg',
@@ -69,7 +69,7 @@ export default class AddCreation extends Component {
             containerStyle={{ }}
             style={{ backgroundColor: 'green' }}
             position="bottomRight"
-            onPress={() => this.props.navigation.navigate('AddButtonPress')}>
+            onPress={() => this.props.navigation.navigate('AddButtonPress',{add:this.state.add, image:this.state.image, url:this.state.banners.url})}>
             <Icon type="FontAwesome" name="plus" />
           </Fab>
 
