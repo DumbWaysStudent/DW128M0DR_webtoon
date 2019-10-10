@@ -9,6 +9,7 @@ import AddCreation from '../screen/init/AddCreation'
 import AddButtonPress from '../screen/init/AddButtonPress'
 import CreateEps from '../screen/init/CreateEps'
 import EditWebtoon from '../screen/init/EditWebtoon'
+import EditEps from '../screen/init/EditEps'
 
 const User = createStackNavigator({
     BottomTabNavigator : {
@@ -57,6 +58,12 @@ const User = createStackNavigator({
         screen:EditWebtoon,
         navigationOptions:{
             header: null
+        }
+    },
+    EditEps:{
+        screen:EditEps,
+        navigationOptions:{
+            header:null
         }
     }
 })
