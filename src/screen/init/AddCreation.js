@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, Button, Text, Icon,Left,Body, Header, Title, Fab} from 'native-base';
-import {View, FlatList, Image, StyleSheet,SafeAreaView} from 'react-native'
+import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity} from 'react-native'
 
 
 export default class AddCreation extends Component {
@@ -46,6 +46,7 @@ export default class AddCreation extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('EditWebtoon')}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
                             <Image style={{width:100, height:100, padding:10, borderRadius:15}} source={{uri : item.url}}/>
@@ -57,7 +58,8 @@ export default class AddCreation extends Component {
                                 <Text style={{color:'#676767', marginBottom:10}}> {item.favorite}</Text>
                             </View>
                         </View>
-                    </View> 
+                    </View>
+                </TouchableOpacity> 
                 }                
                 keyExtractor={(item, index) => index.toString()}
             />
