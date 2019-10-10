@@ -66,7 +66,7 @@ export default class AddButtonPress extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate('EditWebtoon')}>
+                <TouchableOpacity onPress={()=>alert('will be edited menu')}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
                             <Image style={{width:100, height:100, padding:10, borderRadius:15}} source={{uri : item.url}}/>
