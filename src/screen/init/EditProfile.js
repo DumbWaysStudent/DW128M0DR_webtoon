@@ -34,13 +34,11 @@ export default class EditProfile extends Component {
                 type: response.type,
                 name: response.fileName,
               };
-              // You can also display the image using data:
-              // const source = { uri: 'data:image/jpeg;base64,' + response.data };
               const source = tmpPhoto;
               this.setState({
                 image: source
               });
-            }
+            } 
           });
       };
 

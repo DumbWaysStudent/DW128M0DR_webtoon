@@ -80,7 +80,7 @@ export default class AddButtonPress extends Component {
             />
             <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress={()=>alert('add')}>
+                onPress={() => this.props.navigation.navigate('CreateEps')}>
              <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>+Add Episode</Text>
             </TouchableOpacity>
         </SafeAreaView>
