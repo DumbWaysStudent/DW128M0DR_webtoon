@@ -25,15 +25,6 @@ export default class ForYouStack extends Component {
           }]
         };
       }
-      componentDidMount() {
-        this.setState({
-          interval: setInterval(() => {
-            this.setState({
-              position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
-            });
-          }, 2000)
-        });
-      }
 
   render() {
     const {navigate} = this.props.navigation
