@@ -7,12 +7,9 @@ export default class EditProfile extends Component {
     constructor() {
         super() 
         this.state = {
-            data : {name : ""},
+            data : {name : "Rendi Wijiatmoko"},
+            image: { uri : 'https://www.w3schools.com/howto/img_avatar.png'}
         }
-    }
-
-    edited = () => {
-        this.props.navigation.navigate('Profile')
     }
 
     handleChoosePhoto = () => {
@@ -56,20 +53,20 @@ export default class EditProfile extends Component {
                 </Left>
             
                 <Right>
-                    <Icon name="md-checkmark" onPress={()=>{this.edited}} style={{marginRight:10, color:'#676767'}}/>
+                    <Icon name="md-checkmark" onPress={()=>{this.props.navigation.navigate('Profile')}} style={{marginRight:10, color:'#676767'}}/>
                 </Right>
             </Header>
             <Content>
             <SafeAreaView style={{alignItems:'center'}}>
-                <Image style={styles.profileImg} source={{uri:this.props.navigation.getParam('image')}}/>   
+                <Image style={styles.profileImg} source={{uri:this.state.image.uri}}/>   
                 <Icon style={{marginTop:-50, backgroundColor:'white',borderRadius:30, padding:10, marginRight:100}} onPress={this.handleChoosePhoto} name="camera"/>
             </SafeAreaView>
             <SafeAreaView style={{marginVertical:15}}>
                 <View style={{alignItems : "center"}}>
                     <Item>
                         <Input style={styles.input}
-                        onChangeText={text => this.props.navigation.setParams({data : {...this.state.data, name : text}})}
-                        value={this.props.navigation.getParam('data')}
+                        onChangeText={text => this.setState({data:{...this.state.data, name:text}})}
+                        value={this.state.data.name}
                         />
                     </Item>
                 </View>
