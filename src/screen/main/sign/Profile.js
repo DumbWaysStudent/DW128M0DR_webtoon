@@ -29,13 +29,13 @@ export default class Profile extends Component {
             <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{}</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
-           <Button onPress={()=>{this.props.navigation.navigate('AddCreation')}}style={{backgroundColor:"#E3E3E3", marginTop:1}}>
+           <Button onPress={()=>{this.props.navigation.navigate('AddCreation')}}style={{borderRadius:15,backgroundColor:"#E3E3E3", marginTop:1}}>
                <Text style={{color:"#676767"}}>
                     My WebToon creation
                </Text>
            </Button>
 
-           <Button onPress={()=>{navigate('Guest')}} style={{backgroundColor:"#E3E3E3" , marginVertical:1}}>
+           <Button onPress={()=>{navigate('Guest')}} style={{borderRadius:15, marginTop:10,backgroundColor:"#E3E3E3" , marginVertical:1}}>
                <Text style={{color:'#676767'}}>
                     Logout
                </Text>
