@@ -63,9 +63,9 @@ export default class MoreDetail extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                    <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
+                    <View style={{backgroundColor:'white',marginHorizontal:15}}>
                         <View>
-                            <Image style={{width:330, height:400, padding:10, borderRadius:15}} source={{uri : item.url}}/>
+                            <Image style={{width:330, height:400, padding:10}} source={{uri : item.url}}/>
                         </View>
                     </View> 
                 }                
