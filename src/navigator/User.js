@@ -5,6 +5,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 import Detail from '../screen/init/Detail';
 import MoreDetail from '../screen/init/MoreDetail'
 import EditProfile from '../screen/init/EditProfile'
+import AddCreation from '../screen/init/AddCreation'
 
 const User = createStackNavigator({
     BottomTabNavigator : {
@@ -27,6 +28,12 @@ const User = createStackNavigator({
     },
     EditProfile:{
         screen:EditProfile,
+        navigationOptions:{
+            header:null
+        }
+    },
+    AddCreation:{
+        screen:AddCreation,
         navigationOptions:{
             header:null
         }

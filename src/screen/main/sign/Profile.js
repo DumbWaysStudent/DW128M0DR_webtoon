@@ -29,7 +29,7 @@ export default class Profile extends Component {
             <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{}</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
-           <Button onPress={()=>{alert('webtoon creation')}}style={{backgroundColor:"#E3E3E3", marginTop:1}}>
+           <Button onPress={()=>{this.props.navigation.navigate('AddCreation')}}style={{backgroundColor:"#E3E3E3", marginTop:1}}>
                <Text style={{color:"#676767"}}>
                     My WebToon creation
                </Text>
