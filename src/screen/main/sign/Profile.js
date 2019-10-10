@@ -3,6 +3,13 @@ import { Container, Content, Button, Text, Header, Left, Right,Icon, Title, Thum
 import {Image, StyleSheet,SafeAreaView,TouchableOpacity} from 'react-native';
 
 export default class Profile extends Component {
+  constructor(){
+    super() 
+    this.state = {
+        data : {name : "Rendi Wijiatmoko"},    
+        image: { uri : 'https://www.w3schools.com/howto/img_avatar.png'}
+    }
+  }
   render() {
     const{navigate} = this.props.navigation
     return (
@@ -13,13 +20,13 @@ export default class Profile extends Component {
             </Left>
         
             <Right>
-                <Icon name="md-create" onPress={()=>{alert('edit')}} style={{marginRight:10, color:'#676767'}}/>
+                <Icon name="md-create" onPress={()=>{navigate('EditProfile', {data:this.state.data.name, image:this.state.image.uri})}} style={{marginRight:10, color:'#676767'}}/>
             </Right>
         </Header>
         <Content>
         <SafeAreaView>
-            <Image source={{uri:'https://www.w3schools.com/howto/img_avatar.png'}} style={styles.profileImg} />
-            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>Your Name</Text>
+            <Image source={{uri:this.state.image.uri}} style={styles.profileImg} />
+            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{}</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
            <Button onPress={()=>{alert('webtoon creation')}}style={{backgroundColor:"#E3E3E3", marginTop:1}}>

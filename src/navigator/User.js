@@ -4,6 +4,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 import BottomTabNavigator from './BottomTabNavigator';
 import Detail from '../screen/init/Detail';
 import MoreDetail from '../screen/init/MoreDetail'
+import EditProfile from '../screen/init/EditProfile'
 
 const User = createStackNavigator({
     BottomTabNavigator : {
@@ -20,6 +21,12 @@ const User = createStackNavigator({
     },
     MoreDetail:{
         screen:MoreDetail,
+        navigationOptions:{
+            header:null
+        }
+    },
+    EditProfile:{
+        screen:EditProfile,
         navigationOptions:{
             header:null
         }
