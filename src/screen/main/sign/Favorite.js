@@ -41,6 +41,7 @@ export default class ForYouStack extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
+                <TouchableOpacity onPress={()=>navigate('DetailStack', {url:item.url, title:item.title})}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
                             <Image style={{width:100, height:100, padding:10, borderRadius:15}} source={{uri : item.url}}/>
@@ -53,6 +54,7 @@ export default class ForYouStack extends Component {
                             </View>
                         </View>
                     </View> 
+                </TouchableOpacity>
                 }                
                 keyExtractor={(item, index) => index.toString()}
             />
