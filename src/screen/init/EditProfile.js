@@ -62,7 +62,7 @@ export default class EditProfile extends Component {
             <Content>
             <SafeAreaView style={{alignItems:'center'}}>
                 <Image style={styles.profileImg} source={{uri:this.props.navigation.getParam('image')}}/>   
-                <Icon onPress={this.handleChoosePhoto} name="camera"/>
+                <Icon style={{marginTop:-50, backgroundColor:'white',borderRadius:30, padding:10, marginRight:100}} onPress={this.handleChoosePhoto} name="camera"/>
             </SafeAreaView>
             <SafeAreaView style={{marginVertical:15}}>
                 <View style={{alignItems : "center"}}>
