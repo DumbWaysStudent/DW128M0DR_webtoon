@@ -4,6 +4,7 @@ import {Image, StyleSheet,SafeAreaView,TouchableOpacity} from 'react-native';
 
 export default class Profile extends Component {
   render() {
+    const{navigate} = this.props.navigation
     return (
       <Container style={{backgroundColor:'#E3E3E3'}}>
         <Header style={{backgroundColor:'#E3E3E3'}}>
@@ -21,13 +22,13 @@ export default class Profile extends Component {
             <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>Your Name</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
-           <Button style={{backgroundColor:"#E3E3E3", marginTop:1}}>
+           <Button onPress={()=>{alert('webtoon creation')}}style={{backgroundColor:"#E3E3E3", marginTop:1}}>
                <Text style={{color:"#676767"}}>
                     My WebToon creation
                </Text>
            </Button>
 
-           <Button style={{backgroundColor:"#E3E3E3" , marginVertical:1}}>
+           <Button onPress={()=>{navigate('Guest')}} style={{backgroundColor:"#E3E3E3" , marginVertical:1}}>
                <Text style={{color:'#676767'}}>
                     Logout
                </Text>
