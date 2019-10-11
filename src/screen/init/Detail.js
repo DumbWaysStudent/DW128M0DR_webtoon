@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Content, Button, Text, Header, Body, Left, Right,Icon, Title} from 'native-base';
 import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native';
 
-export default class ForYouStack extends Component {
+export default class Detail extends Component {
     constructor(props) {
         super(props);
         this.state = {
