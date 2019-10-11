@@ -4,7 +4,7 @@ import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from '
 import  ImagePicker  from 'react-native-image-picker'
 
 
-export default class CreateEps extends Component {
+export default class EditEps extends Component {
     constructor(props) {
         super(props);
         this.state = {
