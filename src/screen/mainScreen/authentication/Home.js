@@ -4,7 +4,6 @@ import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from '
 import Slideshow from 'react-native-image-slider-show';
 
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
-import HeaderGlobal from '../../../components/HeaderGlobal';
 
 export default class Home extends Component {
     constructor(props) {

@@ -10,8 +10,7 @@ export default class Login extends Component {
             showPassword : true,
             email:"",
             password:"",
-            emailNull:true,
-            pwdNull:true,
+            emailNull:false,
        }
     } 
     passwordVisibility = () => {
@@ -22,7 +21,7 @@ export default class Login extends Component {
 
     validateEmail = (email) => {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          if(re.test(email)===false){
+          if(re.test(email)===true){
             this.setState({
                 emailNull:true
             })
@@ -31,24 +30,12 @@ export default class Login extends Component {
                   emailNull:false
               })
           }
-      };
-
-      validatePassword = (password) => {
-          if(password === "" || password===null){
-              this.setState({
-                pwdNull:false
-              })
-          } else {
-              this.setState({
-                  pwdNull:true
-              })
-          }
-      }  
+      }
 
 
     render(){
         const {navigation} = this.props
-        const check = (this.state.emailNull && this.state.pwdNull)
+        const validation = ((this.state.password!="") && (this.state.emailNull==true))
         return(
             <KeyboardAvoidingView style={stylesGlobal.container} enabled>
                 <View style={styles.loginContainer}>
@@ -58,7 +45,7 @@ export default class Login extends Component {
                     />
                 </View>
                     <TextInput 
-                        style={stylesGlobal.input}
+                        style={ this.state.emailNull? stylesGlobal.inputActive:stylesGlobal.input}
                         value={this.state.email}
                         onChangeText={(email)=>{this.setState({email}), this.validateEmail(email)}}
                         returnKeyType="next"
@@ -67,9 +54,10 @@ export default class Login extends Component {
                     />
 
                 <View style={{position:'relative'}}>
-                    <TextInput style = {stylesGlobal.input}   
+                    <TextInput style = { this.state.password!="" ? stylesGlobal.inputActive:stylesGlobal.input}   
                         returnKeyType="go" 
-                        placeholder='Password' 
+                        placeholder='Password'
+                        onChangeText={(text)=>this.setState({password:text})}
                         placeholderTextColor='rgba(225,225,225,10)' 
                         secureTextEntry={this.state.showPassword}>
                     </TextInput>
@@ -82,10 +70,9 @@ export default class Login extends Component {
                 </View>
                     
                     <TouchableOpacity
-                        style={check ?styles.btnDisable:styles.buttonContainer}
+                        style={validation?styles.buttonContainer:styles.btnDisable}
                         onPress={() => navigation.navigate('Home')}
-                        disabled={check ? true : false}>
-
+                        disabled={validation ? true : false}>
                         <Text  style={styles.buttonText}>LOGIN</Text>
                     </TouchableOpacity>
             </KeyboardAvoidingView>
