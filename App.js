@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
-import Route from './src/Route';
+import Authentication from './src/navigator/Authentication'
+import Unauthentication from './src/navigator/Unauthentication'
 
-export default class App extends Component {
-  state = {  }
-  render() {
-    return (
-      <Route/>
-    );
-  }
-}
+const App = createSwitchNavigator({
+    Unauthentication,
+    Authentication
+})
 
-console.disableYellowBox = true;
+export default createAppContainer(App)
+
+//Untuk memarikan warning
+console.disableYellowBox=true

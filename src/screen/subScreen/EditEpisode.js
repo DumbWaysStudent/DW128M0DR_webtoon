@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import { Container, Content, Button, Text, Icon,Item, Input, Header,Right,Body, Left, Title} from 'native-base';
+import React, { Component } from 'react'
+import { Container, Content, Button, Text, Icon, Input, Header,Right,Body, Left, Title} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import  ImagePicker  from 'react-native-image-picker'
 
+import HeaderGLobal from '../../components/HeaderGlobal'
+import {stylesGlobal} from '../../assets/styles/stylesGlobal'
+import SearchBar from '../../components/SeacrhBar'
 
-export default class EditEps extends Component {
+export default class EditEpisode extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,33 +76,13 @@ export default class EditEps extends Component {
 
   render() {
     return (
-      <Container style={{backgroundColor:'#E3E3E3'}}>
-          <Header style={{backgroundColor:'#E3E3E3', marginBottom:10}}>
-            <Left>
-                <Button transparent onPress={()=>this.props.navigation.goBack()} >
-                    <Icon  name="ios-arrow-round-back" style={{color:'#676767'}}/>
-                </Button>
-            </Left>
-        
-            <Body>
-                <Title style={{color:'#676767'}}>Edit Episode</Title>
-            </Body>
-
-            <Right>
-                <Icon name="md-checkmark" onPress={()=>this.props.navigation.navigate('AddButtonPress')} style={{marginRight:10, color:'#676767'}}/>
-            </Right>
-
-        </Header>
+      <Container style={stylesGlobal.container}>
+          <HeaderGLobal onPressBack={()=>this.props.navigation.goBack()} title="Edit Episode" iconName="md-checkmark" iconPress={()=>this.props.navigation.navigate('UpdateCreation')} />
         <Content>
         <SafeAreaView>
 
-        <View style={{backgroundColor:'white', borderRadius:15, marginLeft:15, marginRight:15, marginVertical:10}}>
-            <Input 
-                placeholder="Name"
-                value={this.state.add}
-                onChangeText={text=>this.setState({add:text})}            
-            />
-        </View>
+        <SearchBar placeholder="Name" valueInput={this.state.add} vhangeIntput={text=>this.setState({add:text})} />
+        
         <FlatList
                 data={this.state.tempImg}
                 renderItem={({item}) =>
@@ -128,7 +111,7 @@ export default class EditEps extends Component {
             <TouchableOpacity
                 style={[styles.buttonContainer, {backgroundColor:'red', marginVertical:10}]}
                 onPress={()=>alert('Deleted')}>
-             <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>Delete Webtoon</Text>
+             <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>Delete Episode</Text>
             </TouchableOpacity>
         
         </Content>
@@ -148,9 +131,9 @@ const styles = StyleSheet.create({
         color:"#00D163"
     },
     buttonContainer:{
-        borderRadius:15,
+        borderRadius:10,
         backgroundColor: '#00D163',
-        marginHorizontal:15,
+        marginHorizontal:10,
         paddingVertical: 15
     },
 })

@@ -1,9 +1,9 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator }  from 'react-navigation-stack'
 
-import Login from '../screen/main/auth/Login'
+import Login from '../screen/mainScreen/unauthentication/Login'
 
-const Guest = createStackNavigator({
+const Unauthentication = createStackNavigator({
     Login : {
         screen : Login,
         navigationOptions : {
@@ -12,4 +12,4 @@ const Guest = createStackNavigator({
     }
 })
 
-export default createAppContainer(Guest)
+export default createAppContainer(Unauthentication)

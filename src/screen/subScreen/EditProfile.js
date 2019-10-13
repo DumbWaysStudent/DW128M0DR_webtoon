@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import { Container, Content, Header, Left, Right,Icon, Title, Item, View, Input} from 'native-base';
-import {Image, StyleSheet,SafeAreaView, Text} from 'react-native';
+import React, { Component } from 'react'
+import { Container, Content, Header, Left, Right,Icon, Title, Item, View, Input} from 'native-base'
+import {Image, StyleSheet,SafeAreaView} from 'react-native'
 import  ImagePicker  from 'react-native-image-picker'
+
+import HeaderGlobal from '../../components/HeaderGlobal'
+import {stylesGlobal} from '../../assets/styles/stylesGlobal'
+import SearchBar from '../../components/SeacrhBar'
 
 export default class EditProfile extends Component {
     constructor() {
@@ -44,16 +48,8 @@ export default class EditProfile extends Component {
 
     render() {
         return (
-            <Container style={{backgroundColor:'#E3E3E3'}}>
-            <Header style={{backgroundColor:'#E3E3E3'}}>
-                <Left>
-                    <Title style={{color:'#676767'}}>Edit Profile</Title>
-                </Left>
-            
-                <Right>
-                    <Icon name="md-checkmark" onPress={()=>{this.props.navigation.navigate('Profile')}} style={{marginRight:10, color:'#676767'}}/>
-                </Right>
-            </Header>
+            <Container style={stylesGlobal.container}>
+            <HeaderGlobal title="Edit Profile" iconName="md-checkmark" iconPress={()=>{this.props.navigation.navigate('Profile')}} />
             <Content>
             <SafeAreaView style={{alignItems:'center'}}>
                 <Image style={styles.profileImg} source={{uri:this.state.image.uri}}/>   
@@ -95,12 +91,13 @@ const styles = StyleSheet.create({
       },
       input:{
         textAlign:'center',
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         height: 40,
-        backgroundColor: 'white',
         marginBottom: 10,
-        padding: 10,
+        padding: 0,
         color: '#000',
-        borderRadius:15,
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:"rgba(78,78,78, 0.5)"
     }
 })

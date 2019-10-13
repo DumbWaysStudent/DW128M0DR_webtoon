@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
-import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image} from 'react-native';
+import React, {Component} from 'react'
+import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image, KeyboardAvoidingView} from 'react-native'
+
+import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
 
 export default class Login extends Component {
     constructor(){
@@ -11,7 +13,7 @@ export default class Login extends Component {
             emailNull:true,
             pwdNull:true,
        }
-    }
+    } 
     passwordVisibility = () => {
         this.setState({
             showPassword:!this.state.showPassword
@@ -48,7 +50,7 @@ export default class Login extends Component {
         const {navigation} = this.props
         const check = (this.state.emailNull && this.state.pwdNull)
         return(
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={stylesGlobal.container} enabled>
                 <View style={styles.loginContainer}>
                     <Image
                         style={styles.logo}
@@ -56,7 +58,7 @@ export default class Login extends Component {
                     />
                 </View>
                     <TextInput 
-                        style={styles.input}
+                        style={stylesGlobal.input}
                         value={this.state.email}
                         onChangeText={(email)=>{this.setState({email}), this.validateEmail(email)}}
                         returnKeyType="next"
@@ -65,14 +67,14 @@ export default class Login extends Component {
                     />
 
                 <View style={{position:'relative'}}>
-                    <TextInput style = {styles.input}   
+                    <TextInput style = {stylesGlobal.input}   
                         returnKeyType="go" 
                         placeholder='Password' 
                         placeholderTextColor='rgba(225,225,225,10)' 
                         secureTextEntry={this.state.showPassword}>
                     </TextInput>
                     
-                    <TouchableOpacity style={{position:'absolute',bottom:25, right:'10%'}} onPress = { this.passwordVisibility }>
+                    <TouchableOpacity style={{position:'absolute',bottom:30, right:'10%'}} onPress = { this.passwordVisibility }>
                         <View >
                             <Text style={styles.showhide}>{this.state.showPassword ? "show" : "hide" }</Text>
                         </View>
@@ -80,23 +82,18 @@ export default class Login extends Component {
                 </View>
                     
                     <TouchableOpacity
-                        style={check?styles.btnDisable:styles.buttonContainer}
+                        style={check ?styles.btnDisable:styles.buttonContainer}
                         onPress={() => navigation.navigate('Home')}
                         disabled={check ? true : false}>
 
                         <Text  style={styles.buttonText}>LOGIN</Text>
                     </TouchableOpacity>
-
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex : 1,
-        backgroundColor: '#E3E3E3'
-    },
     loginContainer: {
         alignItems:'center',
         justifyContent:'center'
@@ -115,16 +112,16 @@ const styles = StyleSheet.create({
         borderRadius:15,
     },
     buttonContainer:{
-        borderRadius:15,
+        borderRadius:10,
         backgroundColor: '#00D163',
         marginHorizontal:15,
-        paddingVertical: 15
+        paddingVertical: 20
     },
     btnDisable:{
-        borderRadius:15,
-        backgroundColor: 'red',
+        borderRadius:10,
+        backgroundColor: '#828282',
         marginHorizontal:15,
-        paddingVertical: 15
+        paddingVertical: 20
     },
     buttonText:{
         color: '#fff',

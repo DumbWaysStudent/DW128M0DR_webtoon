@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator }  from 'react-navigation-tabs';
 import {Icon} from 'native-base';
 
-import ForYouStack from '../screen/main/sign/Home'
-import FavoriteStack from '../screen/main/sign/Favorite'
-import ProfileStack from '../screen/main/sign/Profile'
+import Home from '../../screen/mainScreen/authentication/Home'
+import Favorite from '../../screen/mainScreen/authentication/Favorite'
+import Profile from '../../screen/mainScreen/authentication/Profile'
 
 const BottomTabNavigator = createBottomTabNavigator({
     Home: {
-      screen: ForYouStack,
+      screen: Home,
       navigationOptions:{
         tabBarLabel: "For You",
         tabBarIcon: ({ tintColor }) => (
@@ -18,7 +18,7 @@ const BottomTabNavigator = createBottomTabNavigator({
       }
     },
     Favorite: {
-        screen: FavoriteStack,
+        screen: Favorite,
         navigationOptions:{
           tabBarLabel: 'Favorite',
           tabBarIcon: ({ tintColor }) => (
@@ -27,7 +27,7 @@ const BottomTabNavigator = createBottomTabNavigator({
         }
     },
     Profile: {
-        screen: ProfileStack,
+        screen: Profile,
         navigationOptions:{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ tintColor }) => (

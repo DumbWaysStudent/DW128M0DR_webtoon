@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { Container, Content, Button, Text, Icon,Item, Input} from 'native-base';
+import React, { Component } from 'react'
+import { Container, Content, Button, Text, Icon,Item, Input, Header, Body} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import Slideshow from 'react-native-image-slider-show';
 
+import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
+import HeaderGlobal from '../../../components/HeaderGlobal';
 
-export default class ForYouStack extends Component {
+export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,26 +37,27 @@ export default class ForYouStack extends Component {
   render() {
     const {navigate} = this.props.navigation
     return (
-      <Container style={{backgroundColor:'#E3E3E3'}}>
-          <Item style={{backgroundColor:'white', borderRadius:15, marginLeft:15, marginRight:15, marginVertical:10}}>
+      <Container style={stylesGlobal.container}>
+          <Item style={{borderRadius:10, marginLeft:10, marginRight:10, paddingVertical:3}}>
             <Input placeholder="Search" />
             <Icon name="ios-search" />
           </Item>
         <Content>
-        <View style={{marginHorizontal:15}}>
+        <View>
           <Slideshow
-            height={200}
+            height={300}
             overlay={true}
             arrowSize={0}
             indicatorSelectedColor="#2ce617"
             titleStyle={{color : "white"}}
             dataSource={this.state.banners}
             position={this.state.position}
-            onPositionChanged={position => this.setState({ position })} />
+            onPositionChanged={position => this.setState({ position })}
+          />
         </View>
       
         <View>
-            <Text style={styles.title}>Favorite</Text>
+            <Text style={stylesGlobal.title}>Favorite</Text>
         </View>
         
         <SafeAreaView>
@@ -63,11 +66,11 @@ export default class ForYouStack extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>navigate('DetailStack', {url:item.url, title:item.title})}>
-                    <View style={{marginHorizontal:10, backgroundColor:'white', borderRadius:10}}>
-                        <Image style={{width:'100%', height:150, padding:10, borderTopLeftRadius:10, borderTopRightRadius:10}} source={{uri : item.url}}/>
+                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.url, title:item.title})}>
+                    <View style={{marginHorizontal:5, borderRadius:10,borderWidth:0.5, borderColor:'rgba(78,78,78, 0.5)'}}>
+                        <Image style={{width:'100%', height:100, borderTopLeftRadius:10, borderTopRightRadius:10}} source={{uri : item.url}}/>
                         <View style={{width : 150}}>
-                            <Text style={{ textAlign: 'center', marginTop:5}}>{item.title}</Text>
+                            <Text style={{ textAlign: 'center', marginVertical:5}}>{item.title}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -77,7 +80,7 @@ export default class ForYouStack extends Component {
         </SafeAreaView>
 
         <View>
-            <Text style={styles.title}>All</Text>
+            <Text style={stylesGlobal.title}>All</Text>
         </View>
 
         <SafeAreaView>
@@ -86,21 +89,22 @@ export default class ForYouStack extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                    <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:10, flex:2, flexDirection:'row', borderRadius:15}}>
+                    <View style={{flexDirection:'row',marginHorizontal:10}}>
                         <View>
-                            <Image style={{width:130, height:130, padding:10, borderRadius:15}} source={{uri : item.url}}/>
+                          <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.url, title:item.title})}>
+                            <Image style={{width:100, height:100, borderRadius:10}} source={{uri : item.url}}/>
+                          </TouchableOpacity>
                         </View>
 
-                        <View style={{marginHorizontal:15, marginTop:15}}>
+                        <View style={{marginLeft:30, marginTop:5}}>
                             <Text style={{ textAlign: 'left'}}>{item.title}</Text>
-                            <Button success style={{marginTop: 20,  borderRadius:15, padding:15}}><Text>Favorite+</Text></Button>
+                            <Button success style={{marginVertical: 20,  borderRadius:10, padding:10}}><Text>Favorite+</Text></Button>
                         </View>
                     </View> 
                 }                
                 keyExtractor={(item, index) => index.toString()}
             />
         </SafeAreaView>
-        
         </Content>
       </Container>
     );
@@ -108,12 +112,6 @@ export default class ForYouStack extends Component {
 }
 
 const styles = StyleSheet.create({
-    title:{
-        marginHorizontal:15,
-        marginVertical:10,
-        fontSize:25,
-        fontWeight:"bold"
-    },
     btnActive:{
         color:"#00D163"
     }
