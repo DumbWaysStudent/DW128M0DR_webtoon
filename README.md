@@ -3,8 +3,6 @@ Clone WebToon ini dibuat untuk memenuhi tugas Bootcamp dari Dumbways.id.
 
 # Screenshots
 <p float="left">
-
-
 <img src='../master/src/image/Screenshot_20191014_011214.jpg' width="200" height="350" alt="Screen Login"/>
 <img src="../master/src/image/Screenshot_20191014_011234.jpg" width="200" height="350" alt="For You Screen"/>
 <img src="../master/src/image/Screenshot_20191014_011241.jpg" width="200" height="350" alt="Detail Screen"/>
@@ -18,7 +16,6 @@ Clone WebToon ini dibuat untuk memenuhi tugas Bootcamp dari Dumbways.id.
 <img src="../master/src/image/Screenshot_20191014_011336.jpg" width="200" height="350" alt="Add Screen"/>
 <img src="../master/src/image/Screenshot_20191014_011343.jpg" width="200" height="350" alt="Add Screen2"/>
 <img src="../master/src/image/Screenshot_20191014_011343.jpg" width="200" height="350" alt="Add Screen2"/>
-
 </p>
 
 # Prerequisites
