@@ -5,7 +5,7 @@ Clone WebToon ini dibuat untuk memenuhi tugas Bootcamp dari Dumbways.id.
 <p float="left">
 
 
-<img src='../src/image/Screenshot_20191014_011214.jpg' width="200" height="350" alt="Screen Login"/>
+<img src='../master/src/image/Screenshot_20191014_011214.jpg' width="200" height="350" alt="Screen Login"/>
 
 <img src="../src/image/Screenshot_20191014_011234.jpg" width="200" height="350" alt="For You Screen"/>
 
