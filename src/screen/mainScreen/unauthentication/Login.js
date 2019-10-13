@@ -72,7 +72,7 @@ export default class Login extends Component {
                     <TouchableOpacity
                         style={validation?styles.buttonContainer:styles.btnDisable}
                         onPress={() => navigation.navigate('Home')}
-                        disabled={validation ? true : false}>
+                        disabled={validation?false:true}>
                         <Text  style={styles.buttonText}>LOGIN</Text>
                     </TouchableOpacity>
             </KeyboardAvoidingView>
