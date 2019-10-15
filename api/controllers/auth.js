@@ -4,8 +4,7 @@ const models = require('../database/models')
 const User = models.user
 
 exports.login = (req, res)=>{    
-    const username = req.body.username
-    const password = req.body.password
+    const {username, password} = req.body
 
     User.findOne({where: {username, password}}).then(user=>{
         
