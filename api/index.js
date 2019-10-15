@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 const AuthController = require('./controllers/auth')
 
 //middlewares
-const { authenticated } = require('./middleware')
+// const { authenticated } = require('./middleware')
 
 app.group("/api/v1", (router) => {
 

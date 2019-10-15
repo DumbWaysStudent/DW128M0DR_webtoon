@@ -4,14 +4,14 @@ const models = require('../database/models')
 const User = models.user
 
 exports.login = (req, res)=>{    
-    const {username, password} = req.body
+    const {email, password} = req.body
     
-    User.findOne({where: {username, password}}).then(user=>{
+    User.findOne({where: {email, password}}).then(user=>{
         
         if(user){
             const token = jwt.sign({ userId: user.id }, 'my-secret-key')
             res.send({
-                username,
+                email,
                 token
             }) 
         }else{
