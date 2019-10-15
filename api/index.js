@@ -10,15 +10,19 @@ app.use(bodyParser.json())
 //controllers
 const AuthController = require('./controllers/auth')
 const UseraController = require('./controllers/user')
+const WebtoonsController = require('./controllers/webtoons')
 
 //middlewares
-// const { authenticated } = require('./middleware')
+const { authenticated } = require('./middleware')
 
 app.group("/api/v1", (router) => {
 
     //auth API
     router.post('/login', AuthController.login)
     router.post('/register', UseraController.store)
+    router.get('/webtoons', WebtoonsController.index)
+    router.get('/webtoons/favorite', WebtoonsController.favorite)
+    router.get('/webtoons/:title', WebtoonsController.title)
 })
 
 
