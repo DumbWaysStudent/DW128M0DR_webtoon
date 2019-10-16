@@ -83,4 +83,27 @@ userPost:(req, res) => {
         console.log(err)
     })
 },
+
+updateWebtoon:(req,res) => {
+    const { id_user, id_webtoon } = req.params
+    const {title,genre,isFavorite,image} = req.body 
+    console.log(id_user + " " + id_webtoon)
+    Webtoon.findAll({
+        where: { 
+            id: id_webtoon,
+            createBy:id_user
+        }
+    }).then(() => {
+        Webtoon.update({
+                title:title,
+                genre:genre,
+                isFavorite:isFavorite,
+                image:image
+        },{
+            where:{
+                id:id_webtoon
+            }
+        }).then(webtoons => res.send(webtoons))
+    })
+}
 }
