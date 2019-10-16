@@ -21,10 +21,9 @@ app.group("/api/v1", (router) => {
     router.post('/login', AuthController.login)
     router.post('/register', UseraController.store)
     router.get('/webtoons', authenticated, WebtoonsController.index)
-    router.get('/webtoons/:title', WebtoonsController.title)
-    router.get('/webtoon/:id/episodes', WebtoonsController.episodes)
-    router.get('/webtoon/:id_webtoon/episode/:id_episode', WebtoonsController.pages)
-
+    router.get('/webtoons/:title', authenticated, WebtoonsController.title)
+    router.get('/webtoon/:id/episodes', authenticated, WebtoonsController.episodes)
+    router.get('/webtoon/:id_webtoon/episode/:id_episode', authenticated, WebtoonsController.pages)
 })
 
 
