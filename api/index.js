@@ -23,7 +23,7 @@ app.group("/api/v1", (router) => {
     router.get('/webtoons', authenticated, WebtoonsController.index)
     router.get('/webtoons/favorite', authenticated, WebtoonsController.favorite)
     router.get('/webtoons/:title', WebtoonsController.title)
-    router.get('/:id/episodes', WebtoonsController.episodes)
+    router.get('/webtoon/:id/episodes', WebtoonsController.episodes)
 })
 
 
