@@ -29,6 +29,7 @@ app.group("/api/v1", (router) => {
     router.post('/user/:id_user/webtoon', authenticated, WebtoonsController.userPost)
     router.patch('/user/:id_user/webtoon/:id_webtoon', authenticated, WebtoonsController.updateWebtoon)
     router.delete('/user/:id_user/webtoon/:id_webtoon', authenticated, WebtoonsController.deleteWebtoon)
+    router.post('/user/:id_user/webtoon/:id_webtoon/episode', authenticated, WebtoonsController.createEpisode)
 })
 
 

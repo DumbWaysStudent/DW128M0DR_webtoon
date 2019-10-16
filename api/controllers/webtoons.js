@@ -123,5 +123,19 @@ deleteWebtoon:(req,res) => {
             webtoons : id_webtoon
         }))
     })
+},
+
+createEpisode:(req, res) => {
+    User.findAll({
+        where: { 
+            id: req.params.id_user,
+        }
+    }).then(()=>{
+        Episodes.create({
+                title:req.body.title,
+                image:req.body.image,
+                webtoon_id:req.params.id_webtoon
+        })
+    }).then(webtoons => res.send(webtoons))
 }
 }
