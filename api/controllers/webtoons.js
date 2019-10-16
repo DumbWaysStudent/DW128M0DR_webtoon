@@ -1,12 +1,14 @@
+const Sequelize = require('sequelize')
 const models = require('../database/models')
 const User = models.user
 const Webtoon = models.webtoons
 const Episodes = models.episodes
 const Pages = models.pages
+const Op = Sequelize.Op
 
 module.exports = {
 index:(req,res) => {
-     const {favorite} = req.query
+     const {favorite, title} = req.query
      console.log(favorite)
      if(favorite=="true"){
         Webtoon.findAll({
@@ -20,6 +22,12 @@ index:(req,res) => {
                  isFavorite:false
              }
          }).then(webtoons => res.send(webtoons))
+     } else if(title){
+        Webtoon.findAll({
+            where  : {
+                title : { [Op.like] : `%${title}%` }
+              }
+        }).then(webtoons => res.send(webtoons))
      } else {
          Webtoon.findAll({
             include: [{
@@ -30,14 +38,6 @@ index:(req,res) => {
      }
      
  },
-
-title:(req,res) => {
-    Webtoon.findOne({
-        where:{
-            title:req.params.title
-        }
-    }).then(webtoons => res.send(webtoons))
-},
 
 episodes:(req,res) => {
     Episodes.findAll({
