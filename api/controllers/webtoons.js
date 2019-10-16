@@ -1,7 +1,8 @@
-const models = require('../database/models');
-const User = models.user;
-const Webtoon = models.webtoons;
+const models = require('../database/models')
+const User = models.user
+const Webtoon = models.webtoons
 const Episodes = models.episodes
+const Pages = models.pages
 
 module.exports = {
 index : (req,res) => {
@@ -34,5 +35,17 @@ episodes:(req,res) => {
     Episodes.findAll({
         where:{webtoon_id:req.params.id}        
     }).then(webtoons => res.send(webtoons))
+},
+
+pages:(req,res) => {
+    Pages.findAll({
+        include:[{
+            model:Episodes,
+            where:{
+                webtoon_id:req.params.id_webtoon,
+                id:req.params.id_episode
+            }
+        }]
+    }).then(webtoons=>res.send(webtoons))
 }
 }
