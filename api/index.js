@@ -20,11 +20,12 @@ app.group("/api/v1", (router) => {
     //auth API
     router.post('/login', AuthController.login)
     router.post('/register', UserController.store)
-    router.get('/user/:id_user/webtoons', WebtoonsController.user)
+    
     router.get('/webtoons', authenticated, WebtoonsController.index)
     router.get('/webtoon/:id/episodes', WebtoonsController.episodes)
     router.get('/webtoon/:id_webtoon/episode/:id_episode', WebtoonsController.pages)
 
+    router.get('/user/:id_user/webtoons', WebtoonsController.user)
 })
 
 
