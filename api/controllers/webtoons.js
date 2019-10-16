@@ -200,5 +200,31 @@ createImage:(req, res) => {
     })
     })
     }).then(webtoons => res.send(webtoons))
-}, 
+},
+
+deleteImage:(req, res) => {
+    User.findAll({
+        where: { 
+            id: req.params.id_user,
+        }
+    }).then(()=>{
+       Webtoon.findOne({
+            createBy:req.params.id_webtoon
+    }).then(()=>{
+        Episodes.findOne({
+                id: req.params.id_episode
+    }).then(()=>{
+        Pages.destroy({
+            where:{
+                id:req.params.id_image
+            }
+            
+        }).then(webtoons => res.send(webtoons))
+    })
+    })
+    }).then(webtoons => res.send({
+        message: "success",
+        deletedId : req.params.id_image
+    }))
+},
 }
