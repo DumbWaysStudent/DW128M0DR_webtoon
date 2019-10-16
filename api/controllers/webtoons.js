@@ -7,20 +7,6 @@ const Pages = models.pages
 const Op = Sequelize.Op
 
 module.exports = {
-user:(req, res) => {
-    const { id_user } = req.params
-    Webtoon.findOne({
-        where: { id: id_user },
-          include: [{
-            model: User,
-            as:"created"
-        }]
-    }).then(posts=>
-        res.send(posts)
-    ).catch(err => {
-        console.log(err)
-    })
-},
 index:(req,res) => {
      const {favorite, title} = req.query
      if(favorite=="true"){
@@ -63,6 +49,38 @@ pages:(req,res) => {
             }
         }]
     }).then(webtoons=>res.send(webtoons))
-}
-
+},
+user:(req, res) => {
+    const { id_user } = req.params
+    Webtoon.findOne({
+        where: { id: id_user },
+          include: [{
+            model: User,
+            as:"created"
+        }]
+    }).then(posts=>
+        res.send(posts)
+    ).catch(err => {
+        console.log(err)
+    })
+},
+userPost:(req, res) => {
+    const { id_user } = req.params
+    const {title,genre,isFavorite,image} = req.body 
+    User.findAll({
+        where: { 
+            id: id_user,
+        }
+    }).then(() => {
+        Webtoon.create({
+            title:title,
+            genre:genre,
+            isFavorite:isFavorite,
+            image:image,
+            createBy:req.body.createBy
+        }).then(webtoons => res.send(webtoons))
+    }).catch(err => {
+        console.log(err)
+    })
+},
 }
