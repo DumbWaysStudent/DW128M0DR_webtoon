@@ -105,5 +105,23 @@ updateWebtoon:(req,res) => {
             }
         }).then(webtoons => res.send(webtoons))
     })
+},
+
+deleteWebtoon:(req,res) => {
+    const { id_user, id_webtoon } = req.params
+    Webtoon.findAll({
+        where: { 
+            createBy:id_user
+        }
+    }).then(()=>{
+        Webtoon.destroy({
+            where:{
+                id:id_webtoon
+            }
+        }).then((webtoons) => res.send({
+            message: "success",
+            webtoons : id_webtoon
+        }))
+    })
 }
 }
