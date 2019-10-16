@@ -8,9 +8,9 @@ const Op = Sequelize.Op
 
 module.exports = {
 user:(req, res) => {
-    const { user_id } = req.params
+    const { id_user } = req.params
     Webtoon.findOne({
-        where: { id: user_id },
+        where: { id: id_user },
           include: [{
             model: User,
             as:"created"
