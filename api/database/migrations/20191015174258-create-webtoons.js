@@ -21,7 +21,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       createBy: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'users',
+          key:'id'
+        },
+        onDelete:'cascade',
+        onUpdate:'cascade'
+
       },
       createdAt: {
         allowNull: false,
