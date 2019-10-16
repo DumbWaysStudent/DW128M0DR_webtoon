@@ -7,6 +7,20 @@ const Pages = models.pages
 const Op = Sequelize.Op
 
 module.exports = {
+user:(req, res) => {
+    const { user_id } = req.params
+    Webtoon.findOne({
+        where: { id: user_id },
+          include: [{
+            model: User,
+            as:"created"
+        }]
+    }).then(posts=>
+        res.send(posts)
+    ).catch(err => {
+        console.log(err)
+    })
+},
 index:(req,res) => {
      const {favorite, title} = req.query
      if(favorite=="true"){
