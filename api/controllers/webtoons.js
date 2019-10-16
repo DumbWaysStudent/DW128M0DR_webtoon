@@ -21,8 +21,8 @@ index : (req,res) => {
      }).then(webtoons => res.send(webtoons))
  },
 
-title:(res,req) => {
-    Webtoon.findAll({
+title:(req,res) => {
+    Webtoon.findOne({
         where:{
             title:req.params.title
         }
