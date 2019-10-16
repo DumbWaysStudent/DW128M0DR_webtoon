@@ -137,5 +137,24 @@ createEpisode:(req, res) => {
                 webtoon_id:req.params.id_webtoon
         })
     }).then(webtoons => res.send(webtoons))
+},
+
+updateEpisode:(req,res) => {
+    const { id_user, id_webtoon, id_episode } = req.params
+    User.findAll({
+        where: { 
+            id: id_user,
+        }
+    }).then(() => {
+        Episodes.update({
+            title:req.body.title,
+            image:req.body.image,
+            webtoon_id:id_webtoon
+        },{
+            where:{
+                id:id_episode
+            }
+        }).then(webtoons => res.send(webtoons))
+    })
 }
 }
