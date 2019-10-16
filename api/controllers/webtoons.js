@@ -5,22 +5,30 @@ const Episodes = models.episodes
 const Pages = models.pages
 
 module.exports = {
-index : (req,res) => {
-    Webtoon.findAll({
-       include: [{
-           as: "created",
-           model: User
-       }
-     ]
-   }).then(webtoons=>res.send(webtoons))
- },
- 
- favorite:(req,res) => {
-     Webtoon.findAll({
-         where:{
-             isFavorite:true
-         }
-     }).then(webtoons => res.send(webtoons))
+index:(req,res) => {
+     const {favorite} = req.query
+     console.log(favorite)
+     if(favorite=="true"){
+        Webtoon.findAll({
+            where:{
+                isFavorite:true
+            }
+        }).then(webtoons => res.send(webtoons))
+     } else if(favorite == "false"){
+         Webtoon.findAll({
+             where:{
+                 isFavorite:false
+             }
+         }).then(webtoons => res.send(webtoons))
+     } else {
+         Webtoon.findAll({
+            include: [{
+                as: "created",
+                model: User
+            }]
+         }).then(webtoons => res.send(webtoons))
+     }
+     
  },
 
 title:(req,res) => {
