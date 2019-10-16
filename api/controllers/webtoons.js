@@ -9,7 +9,6 @@ const Op = Sequelize.Op
 module.exports = {
 index:(req,res) => {
      const {favorite, title} = req.query
-     console.log(favorite)
      if(favorite=="true"){
         Webtoon.findAll({
             where:{
@@ -29,12 +28,7 @@ index:(req,res) => {
               }
         }).then(webtoons => res.send(webtoons))
      } else {
-         Webtoon.findAll({
-            include: [{
-                as: "created",
-                model: User
-            }]
-         }).then(webtoons => res.send(webtoons))
+         Webtoon.findAll().then(webtoons => res.send(webtoons))
      }
      
  },
