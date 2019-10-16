@@ -156,5 +156,49 @@ updateEpisode:(req,res) => {
             }
         }).then(webtoons => res.send(webtoons))
     })
-}
+},
+deleteEpisode:(req, res) => {
+    const { id_user, id_webtoon, id_episode } = req.params
+    User.findAll({
+        where: { 
+            id:id_user
+        }
+    }).then(()=>{
+        Webtoon.findOne({
+            createBy:id_webtoon
+        })
+    .then(()=>{
+        Episodes.destroy({
+            where:{
+                id:id_episode
+            }
+        })
+        }).then(webtoons=> res.send({
+            message: "success",
+            webtoons : id_webtoon
+        }))
+    })
+},
+
+createImage:(req, res) => {
+    User.findAll({
+        where: { 
+            id: req.params.id_user,
+        }
+    }).then(()=>{
+       Webtoon.findOne({
+            createBy:req.params.id_webtoon
+    }).then(()=>{
+        Episodes.findOne({
+            id: req.params.id_episode
+    }).then(()=>{
+        Pages.create({
+            episode_id:req.body.id_episode,
+            page:req.body.page,
+            image:req.body.image
+        })
+    })
+    })
+    }).then(webtoons => res.send(webtoons))
+}, 
 }
