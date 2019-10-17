@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Container, Content, Button, Text, Icon,Item, Input, Header, Body} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
-import Slideshow from 'react-native-image-slider-show';
+import Slideshow from 'react-native-image-slider-show'
+import {AsyncStorage} from 'react-native'
 
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
+import axios from '../../../utils/API'
 
 export default class Home extends Component {
     constructor(props) {
@@ -13,25 +15,40 @@ export default class Home extends Component {
           interval: null,
           banners : [{
             title: 'The Secret of Angel',
-            url: 'https://cdn.imagecomics.com/assets/i/releases/461826/Mercy_issue1_cvr_147581a7be02116581a0f653533a26b1.jpg'
+            url: ''
           }, {
             title: 'Pasutri Gaje',
             url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
           }, {
             title: 'Young Mom',
             url: 'https://cdn.imagecomics.com/assets/i/releases/461620/NomenOmen01-2ndPtg-Cover-2x3_147581a7be02116581a0f653533a26b1.jpg'
-          }]
-        };
+          }],
+
+          webtoons:"",
+          token:""
+        }
       }
-      componentDidMount() {
+      
+      async componentDidMount() {
         this.setState({
+          token : await AsyncStorage.getItem('uToken'),
+          
           interval: setInterval(() => {
             this.setState({
               position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
             });
-          }, 2000)
-        });
-      }
+          }, 2000) 
+        })
+
+        await axios({
+          method: 'GET',
+          url: '/webtoons',
+          headers: { 'Authorization': `Bearer ${this.state.token}` },
+        }).then(response => {
+            const webtoons = response.data;
+            this.setState({webtoons})
+        })
+      }      
 
   render() {
     const {navigate} = this.props.navigation
@@ -61,13 +78,15 @@ export default class Home extends Component {
         
         <SafeAreaView>
             <FlatList
-                data={this.state.banners}
+                data={this.state.webtoons}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.url, title:item.title})}>
+                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
                     <View style={{marginHorizontal:5, borderRadius:10,borderWidth:0.5, borderColor:'rgba(78,78,78, 0.5)'}}>
-                        <Image style={{width:'100%', height:100, borderTopLeftRadius:10, borderTopRightRadius:10}} source={{uri : item.url}}/>
+                        <Image style={{width:'100%', height:100, borderTopLeftRadius:10, borderTopRightRadius:10}} 
+                               source={{uri : item.image}}
+                        />
                         <View style={{width : 150}}>
                             <Text style={{ textAlign: 'center', marginVertical:5}}>{item.title}</Text>
                         </View>
@@ -84,14 +103,14 @@ export default class Home extends Component {
 
         <SafeAreaView>
             <FlatList
-                data={this.state.banners}
+                data={this.state.webtoons}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
                     <View style={{flexDirection:'row',marginHorizontal:10}}>
                         <View>
-                          <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.url, title:item.title})}>
-                            <Image style={{width:100, height:100, borderRadius:10}} source={{uri : item.url}}/>
+                          <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title})}>
+                            <Image style={{width:100, height:100, borderRadius:10}} source={{uri : item.image}}/>
                           </TouchableOpacity>
                         </View>
 

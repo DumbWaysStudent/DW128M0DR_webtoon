@@ -2,13 +2,14 @@ import React, {Component} from 'react'
 import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image, KeyboardAvoidingView} from 'react-native'
 
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
-import axios from 'axios'
+import axios from '../../../utils/API';
 
-export default class Login extends Component {
+export default class Register extends Component {
     constructor(){
         super();
         this.state = {
             showPassword : true,
+            name:"",
             email:"",
             password:"",
             emailNull:false,
@@ -33,27 +34,23 @@ export default class Login extends Component {
           }
       }
 
-      handleLogin = () => {
+      handleRegister = () => {
         axios({
             method: 'post',
-            url: '/login',
+            url: '/register',
             data: {
-              email: this.state.email,
-              password: this.state.password
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password
             }
           })
           .then((response) => {
-            if(typeof response.data.token !== 'undefined'){
-                AsyncStorage.setItem('uToken', response.data.token)
                 this.props.navigation.navigate('Home')
-              }else{
-                alert('Email or Password is invalid')
-              }
           });
       }
     
     render(){
-        const validation = ((this.state.password!="") && (this.state.emailNull==true))
+        const validation = ((this.state.password!="") && (this.state.email!==true) && (this.state.name!==""))
         return(
             <KeyboardAvoidingView style={stylesGlobal.container} enabled>
                 <View style={styles.loginContainer}>
@@ -62,6 +59,15 @@ export default class Login extends Component {
                         source={require('../../../assets/image/logo.png')}
                     />
                 </View>
+                    <TextInput 
+                        style={ this.state.name!=""? stylesGlobal.inputActive:stylesGlobal.input}
+                        value={this.state.name}
+                        onChangeText={(name)=>{this.setState({name})}}
+                        returnKeyType="next"
+                        placeholder='Name'
+                        placeholderTextColor='rgba(225,225,225,10)' 
+                    />
+
                     <TextInput 
                         style={ this.state.emailNull? stylesGlobal.inputActive:stylesGlobal.input}
                         value={this.state.email}
@@ -89,13 +95,9 @@ export default class Login extends Component {
                     
                     <TouchableOpacity
                         style={validation?styles.buttonContainer:styles.btnDisable}
-                        onPress={() => this.handleLogin()}
+                        onPress={() => this.handleRegister()}
                         disabled={validation?false:true}>
-                        <Text  style={styles.buttonText}>LOGIN</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
-                        <Text style={{ marginTop:25, textAlign: 'center', fontWeight: '700', color:'#828282'}}> don't have an account? <Text style={{color:'#00D163'}}>Register now</Text></Text>
+                        <Text  style={styles.buttonText}>REGISTER</Text>
                     </TouchableOpacity>
             </KeyboardAvoidingView>
         )

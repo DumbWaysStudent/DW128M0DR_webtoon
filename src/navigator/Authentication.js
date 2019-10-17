@@ -10,6 +10,7 @@ import ListEpisode from '../screen/subScreen/ListEpisode'
 import UpdateCreation from '../screen/subScreen/UpdateCreation'
 import UpdateEpisode from '../screen/subScreen/UpdateEpisode'
 import UpdateWebtoon from '../screen/subScreen/UpdateWebtoon'
+import Register from '../screen/mainScreen/unauthentication/Register'
 
 const Authentication = createStackNavigator({
     BottomTabNavigator : {
@@ -62,6 +63,12 @@ const Authentication = createStackNavigator({
     },
     UpdateWebtoon: {
         screen : UpdateWebtoon,
+        navigationOptions :{
+            header : null
+        }
+    },
+    Register: {
+        screen : Register,
         navigationOptions :{
             header : null
         }

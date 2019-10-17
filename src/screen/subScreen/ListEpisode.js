@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content,Text} from 'native-base'
+import { Container, Content,Text, Button} from 'native-base'
 import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native'
 
 import HeaderGlobal from '../../components/HeaderGlobal'
@@ -9,28 +9,24 @@ export default class ListEpisode extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          banners : [{
-            title: 'epsd #1',
-            url: 'https://cdn.imagecomics.com/assets/i/releases/461557/comic-book-industry-legend-jim-shooter-brings-new-title-slow-city-blues-to-image-comics_6c32595171.jpg',
-            publish: '6 Oktober 2019'
-          }, {
-            title: 'epsd #2',
-            url: 'https://data.whicdn.com/images/109804316/original.png',
-            publish: '7 Oktober 2019'
-          }, {
-            title: 'epsd #3',
-            url: 'https://data.whicdn.com/images/164573207/original.jpg',
-            publish: '8 Oktober 2019'
-          },{
-            title: 'epsd #4',
-            url: 'https://data.whicdn.com/images/77139070/original.jpg',
-            publish: '9 Oktober 2019'
-          },{
-            title: 'epsd #5',
-            url: 'https://data.whicdn.com/images/64619690/original.jpg',
-            publish: '10 Oktober 2019'
-          }]
-        };
+          token:'',
+          webtoons:'',
+        }
+      }
+      
+      async componentDidMount() {
+        this.setState({
+          token : await AsyncStorage.getItem('uToken')
+        })
+        
+        await axios({
+          method: 'GET',
+          url: `/webtoon/episodes`,
+          headers: { 'Authorization': `Bearer ${this.state.token}` },
+        }).then(response => {
+            const webtoons = response.data;
+            this.setState({webtoons})
+        })
       }
 
     onClick = () => Share.share({
@@ -56,14 +52,14 @@ export default class ListEpisode extends Component {
 
         <SafeAreaView>
             <FlatList
-                data={this.state.banners}
+                data={this.state.webtoons}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
                 <TouchableOpacity onPress={()=>{navigate('DetailEpisode', {title:item.title}) }}>
                     <View style={{backgroundColor:'white',marginHorizontal:10, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
-                            <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.url}}/>
+                            <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.image}}/>
                         </View>
                     
                         <View style={{marginHorizontal:15, alignSelf:'center'}}>
@@ -77,6 +73,8 @@ export default class ListEpisode extends Component {
                 }                
                 keyExtractor={(item, index) => index.toString()}
             />
+
+            <Button onPress={()=>this.props.navigation.getParam('id')}/>
         </SafeAreaView>
         
         </Content>

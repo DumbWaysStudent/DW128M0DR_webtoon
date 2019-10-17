@@ -61,3 +61,5 @@ buck-out/
 __tests__
 android
 ios
+
+api/node_modules
