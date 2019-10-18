@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content, Button, Text, Icon,Item, Input, Header, Body} from 'native-base'
+import { Container, Content, Button, Text, Icon,Item, Input} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import Slideshow from 'react-native-image-slider-show'
 import {AsyncStorage} from 'react-native'
@@ -15,7 +15,7 @@ export default class Home extends Component {
           interval: null,
           banners : [{
             title: 'The Secret of Angel',
-            url: ''
+            url: 'https://media.gettyimages.com/photos/billy-girl-picture-id522217186?k=6&m=522217186&s=612x612&w=0&h=59Z5yvSiZZZ2vtcqF3Qtuy9fW0kB-i24i3Diem5BU6s='
           }, {
             title: 'Pasutri Gaje',
             url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
@@ -75,7 +75,7 @@ export default class Home extends Component {
         <View>
             <Text style={stylesGlobal.title}>Favorite</Text>
         </View>
-        
+        {/* <Button onPress={console.log(AsyncStorage.getItem('name'))} /> */}
         <SafeAreaView>
             <FlatList
                 data={this.state.webtoons}
@@ -109,7 +109,7 @@ export default class Home extends Component {
                 renderItem={({item}) =>
                     <View style={{flexDirection:'row',marginHorizontal:10}}>
                         <View>
-                          <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title})}>
+                          <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
                             <Image style={{width:100, height:100, borderRadius:10}} source={{uri : item.image}}/>
                           </TouchableOpacity>
                         </View>

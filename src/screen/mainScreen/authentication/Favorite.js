@@ -44,7 +44,7 @@ export default class Favorite extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title})}>
+                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
                             <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.image}}/>

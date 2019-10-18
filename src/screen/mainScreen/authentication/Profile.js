@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
-import { Container, Content, Button, Text, Header, Left, Right,Icon, Title} from 'native-base'
-import {Image, StyleSheet,SafeAreaView} from 'react-native';
+import { Container, Content, Button, Text} from 'native-base'
+import {Image, StyleSheet,SafeAreaView,AsyncStorage} from 'react-native';
 
 import HeaderGlobal from '../../../components/HeaderGlobal'
 import { stylesGlobal } from '../../../assets/styles/stylesGlobal';
+import axios from '../../../utils/API'
 
 export default class Profile extends Component {
   constructor(){
     super() 
     this.state = {
-        data : {name : "Rendi Wijiatmoko"},    
+        token:'',
+        webtoons:'',
         image: { uri : 'https://www.w3schools.com/howto/img_avatar.png'}
     }
   }
+
+  async componentDidMount() {
+    this.setState({
+      token : await AsyncStorage.getItem('uToken') 
+    })
+    await axios({
+      method: 'GET',
+      url: '/user/1/webtoons',
+      headers: { 'Authorization': `Bearer ${this.state.token}` },
+    }).then(response => {
+        const webtoons = response.data;
+        this.setState({webtoons})
+    })
+  }
+
   render() {
     return (
       <Container style={stylesGlobal.container}>
@@ -20,10 +37,10 @@ export default class Profile extends Component {
         <Content>
         <SafeAreaView>
             <Image source={{uri:this.state.image.uri}} style={styles.profileImg} />
-            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{}</Text>
+            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{this.state.webtoons.name}</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
-           <Button success onPress={()=>{this.props.navigation.navigate('UpdateCreation')}} style={{borderRadius:10, marginHorizontal:10}}>
+           <Button success onPress={()=>{this.props.navigation.navigate('UpdateCreation', {create:this.state.webtoons.id})}} style={{borderRadius:10, marginHorizontal:10}}>
                <Text style={{color:"#fff"}}>
                     My WebToon creation
                </Text>

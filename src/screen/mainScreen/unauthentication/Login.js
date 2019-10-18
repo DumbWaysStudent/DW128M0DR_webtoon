@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image, KeyboardAvoidingView} from 'react-native'
+import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image, KeyboardAvoidingView, AsyncStorage} from 'react-native'
 
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
 import axios from 'axios'
@@ -33,23 +33,26 @@ export default class Login extends Component {
           }
       }
 
-      handleLogin = () => {
+    handleLogin = () => {
         axios({
-            method: 'post',
-            url: '/login',
-            data: {
-              email: this.state.email,
-              password: this.state.password
+            method: 'POST',
+            url: 'http://192.168.1.64:9090/api/v1/login',
+            data:{
+                email:this.state.email,
+                password:this.state.password
             }
           })
           .then((response) => {
             if(typeof response.data.token !== 'undefined'){
                 AsyncStorage.setItem('uToken', response.data.token)
+                AsyncStorage.setItem('name', response.data.name.toString())
                 this.props.navigation.navigate('Home')
               }else{
                 alert('Email or Password is invalid')
               }
-          });
+          }).catch(err=>{
+              console.log(err)
+          })
       }
     
     render(){

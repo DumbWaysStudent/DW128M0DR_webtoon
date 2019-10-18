@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Content,Text, Button} from 'native-base'
-import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, Share} from 'react-native'
+import { Container, Content,Text} from 'native-base'
+import {View, FlatList, Image,SafeAreaView, TouchableOpacity, Share,AsyncStorage} from 'react-native'
 
 import HeaderGlobal from '../../components/HeaderGlobal'
 import { stylesGlobal } from '../../assets/styles/stylesGlobal';
+import axios from '../../utils/API'
 
 export default class ListEpisode extends Component {
     constructor(props) {
@@ -21,9 +22,10 @@ export default class ListEpisode extends Component {
         
         await axios({
           method: 'GET',
-          url: `/webtoon/episodes`,
+          url: `/webtoon/${this.props.navigation.getParam('id')}/episodes`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
         }).then(response => {
+          console.log(response.data)
             const webtoons = response.data;
             this.setState({webtoons})
         })
@@ -37,7 +39,6 @@ export default class ListEpisode extends Component {
       })
 
   render() {
-    const {navigate} = this.props.navigation
     return (
       <Container style={stylesGlobal.container}>
         <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title={this.props.navigation.getParam('title')} iconName="share" iconPress={()=>this.onClick()} />
@@ -56,7 +57,7 @@ export default class ListEpisode extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>{navigate('DetailEpisode', {title:item.title}) }}>
+                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('DetailEpisode', {title:item.title, webtoon_id:item.webtoon_id, detail_id:item.id}) }}>
                     <View style={{backgroundColor:'white',marginHorizontal:10, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
                         <View>
                             <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.image}}/>
@@ -74,7 +75,6 @@ export default class ListEpisode extends Component {
                 keyExtractor={(item, index) => index.toString()}
             />
 
-            <Button onPress={()=>this.props.navigation.getParam('id')}/>
         </SafeAreaView>
         
         </Content>
