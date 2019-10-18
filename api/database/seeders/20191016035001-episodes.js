@@ -5,39 +5,125 @@ module.exports = {
       return queryInterface.bulkInsert('episodes', [
         {
           "title": "Ep. 1",
-          "image": "https://webtoon-phinf.pstatic.net/20190923_34/1569202898234T8MAO_JPEG/15692028982171485500.jpg?type=q90",
+          "image": "https://media.gettyimages.com/photos/french-anime-girl-picture-id518931946?k=6&m=518931946&s=612x612&w=0&h=Pdc5wARm7UYb3-OPpUVKkv4p8VQBNJxcfy-UbFRMI14=",
           "createdAt": "2019-10-10 08:31",
           "updatedAt": "2019-10-10 08:31",
           "webtoon_id":1
         },
         {
           "title": "Ep. 2",
-          "image": "https://webtoon-phinf.pstatic.net/20190902_21/1567420578238mh34l_JPEG/15674205782091485481.jpg?type=q90",
+          "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
           "createdAt": "2019-10-10 08:31",
           "updatedAt": "2019-10-10 08:31",
           "webtoon_id":1
         },
         {
           "title": "Ep. 3",
-          "image": "https://webtoon-phinf.pstatic.net/20190814_45/1565780316771waVhR_JPEG/15657803167581485440.jpg?type=q90",
+          "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
           "createdAt": "2019-10-10 08:31",
           "updatedAt": "2019-10-10 08:31",
           "webtoon_id":1
+        },        
+
+        {
+          "title": "Ep. 1",
+          "image": "https://media.gettyimages.com/photos/french-anime-girl-picture-id518931946?k=6&m=518931946&s=612x612&w=0&h=Pdc5wARm7UYb3-OPpUVKkv4p8VQBNJxcfy-UbFRMI14=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":2
         },
         {
-          "title": "Ep. 4",
-          "image": "https://webtoon-phinf.pstatic.net/20190814_66/1565780264052K1reA_JPEG/15657802640381485431.jpg?type=q90",
+          "title": "Ep. 2",
+          "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
           "createdAt": "2019-10-10 08:31",
           "updatedAt": "2019-10-10 08:31",
-          "webtoon_id":1
+          "webtoon_id":2
         },
         {
-          "title": "Ep. 5",
-          "image": "https://webtoon-phinf.pstatic.net/20190515_104/1557901982159JaVrP_JPEG/15579019821191485366.jpg?type=q90",
+          "title": "Ep. 3",
+          "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
           "createdAt": "2019-10-10 08:31",
           "updatedAt": "2019-10-10 08:31",
-          "webtoon_id":1
-        }
+          "webtoon_id":2
+        },
+        {
+          "title": "Ep. 1",
+          "image": "https://media.gettyimages.com/photos/french-anime-girl-picture-id518931946?k=6&m=518931946&s=612x612&w=0&h=Pdc5wARm7UYb3-OPpUVKkv4p8VQBNJxcfy-UbFRMI14=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":3
+        },
+        {
+          "title": "Ep. 2",
+          "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":3
+        },
+        {
+          "title": "Ep. 3",
+          "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":3
+        },
+
+        {
+          "title": "Ep. 1",
+          "image": "https://media.gettyimages.com/photos/french-anime-girl-picture-id518931946?k=6&m=518931946&s=612x612&w=0&h=Pdc5wARm7UYb3-OPpUVKkv4p8VQBNJxcfy-UbFRMI14=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":4
+        },
+        {
+          "title": "Ep. 2",
+          "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":4
+        },
+        {
+          "title": "Ep. 3",
+          "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":4
+        },
+
+        {
+          "title": "Ep. 1",
+          "image": "https://media.gettyimages.com/photos/french-anime-girl-picture-id518931946?k=6&m=518931946&s=612x612&w=0&h=Pdc5wARm7UYb3-OPpUVKkv4p8VQBNJxcfy-UbFRMI14=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":5
+        },
+        {
+          "title": "Ep. 2",
+          "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":5
+        },
+        {
+          "title": "Ep. 3",
+          "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
+          "createdAt": "2019-10-10 08:31",
+          "updatedAt": "2019-10-10 08:31",
+          "webtoon_id":5
+        },
+        // {
+        //   "title": "Ep. 4",
+        //   "image": "https://media.gettyimages.com/photos/pisces-picture-id518936432?k=6&m=518936432&s=612x612&w=0&h=1zyhFGDn_jKk_OcMjjJKdhdXoml4oGU1sUIiTKA9KUM=",
+        //   "createdAt": "2019-10-10 08:31",
+        //   "updatedAt": "2019-10-10 08:31",
+        //   "webtoon_id":5
+        // },
+        // {
+        //   "title": "Ep. 5",
+        //   "image": "https://media.gettyimages.com/photos/billy-girl-picture-id522217186?k=6&m=522217186&s=612x612&w=0&h=59Z5yvSiZZZ2vtcqF3Qtuy9fW0kB-i24i3Diem5BU6s=",
+        //   "createdAt": "2019-10-10 08:31",
+        //   "updatedAt": "2019-10-10 08:31",
+        //   "webtoon_id":5
       ], {});
   },
 

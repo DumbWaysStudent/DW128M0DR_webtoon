@@ -33,7 +33,7 @@ module.exports = {
           {
             "title": "Dewangga Ngiler",
             "genre": "comedy",
-            "isFavorite": true,
+            "isFavorite": false,
             "image": "https://media.gettyimages.com/photos/anime-cheerleader-picture-id522089032?k=6&m=522089032&s=612x612&w=0&h=lzFTNrHLVmpSEAfip4Ix9hH2jIFDo0oEqnbLExwLSlc=",
             "createdAt": "2019-10-10 08:31",
             "updatedAt": "2019-10-10T08:31",
@@ -48,52 +48,15 @@ module.exports = {
             "updatedAt": "2019-10-10T08:31",
             "createBy": 1
           },
-          
-          {
-            "title": "Maaaa..bar",
-            "genre": "romance",
-            "isFavorite": true,
-            "image": "https://media.gettyimages.com/photos/sagittarius-picture-id518936408?k=6&m=518936408&s=612x612&w=0&h=M7cx-q-vPu7WOwXuvekOLijb_KhgiN2k3a7i599s0Mc=",
-            "createdAt": "2019-10-10 08:31",
-            "updatedAt": "2019-10-10T08:31",
-            "createBy": 2
-          },
-          {
-            "title": "Cawet",
-            "genre": "drama",
-            "isFavorite": false,
-            "image": "https://media.gettyimages.com/photos/virgo-picture-id518936426?k=6&m=518936426&s=612x612&w=0&h=p3wttB0CabqhVT_gL8EYVnZl_oIDMeDzpkDB8HUbZ-s=",
-            "createdAt": "2019-10-10 08:31",
-            "updatedAt": "2019-10-10T08:31",
-            "createBy": 2
-          },
-          {
-            "title": "Yolo",
-            "genre": "comedy",
-            "isFavorite": true,
-            "image": "https://media.gettyimages.com/photos/pisces-picture-id518936432?k=6&m=518936432&s=612x612&w=0&h=1zyhFGDn_jKk_OcMjjJKdhdXoml4oGU1sUIiTKA9KUM=",
-            "createdAt": "2019-10-10 08:31",
-            "updatedAt": "2019-10-10T08:31",
-            "createBy": 2
-          },
-          {
-            "title": "Dan Cuk",
-            "genre": "comedy",
-            "isFavorite": true,
-            "image": "https://media.gettyimages.com/photos/billy-girl-picture-id522217186?k=6&m=522217186&s=612x612&w=0&h=59Z5yvSiZZZ2vtcqF3Qtuy9fW0kB-i24i3Diem5BU6s=",
-            "createdAt": "2019-10-10 08:31",
-            "updatedAt": "2019-10-10T08:31",
-            "createBy": 2
-          },
-          {
-            "title": "Jempol Sikil",
-            "genre": "romance",
-            "isFavorite": true,
-            "image": "https://media.gettyimages.com/photos/anime-fighter-with-sword-picture-id518933168?k=6&m=518933168&s=612x612&w=0&h=M5L5sTmPhnKSj8LQHBAnOyb1ufBi_CMKixWfGUG8ePA=",
-            "createdAt": "2019-10-10 08:31",
-            "updatedAt": "2019-10-10T08:31",
-            "createBy": 2
-          },
+          // {
+          //   "title": "Jempol Sikil",
+          //   "genre": "romance",
+          //   "isFavorite": false,
+          //   "image": "",
+          //   "createdAt": "2019-10-10 08:31",
+          //   "updatedAt": "2019-10-10T08:31",
+          //   "createBy": 2
+          // },
           
     ], {});
 

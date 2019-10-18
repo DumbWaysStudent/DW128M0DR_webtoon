@@ -52,14 +52,13 @@ pages:(req,res) => {
 },
 user:(req, res) => {
     const { id_user } = req.params
-    Webtoon.findOne({
+    User.findAll({
         where: { id: id_user },
           include: [{
-            model: User,
-            as:"created"
-        }]
+            model: Webtoon
+        }] 
     }).then(posts=>
-        res.send(posts)
+        res.send(posts[0]['webtoons'])
     ).catch(err => {
         console.log(err)
     })
