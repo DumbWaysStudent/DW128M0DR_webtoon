@@ -45,7 +45,7 @@ export default class Login extends Component {
           .then((response) => {
             if(typeof response.data.token !== 'undefined'){
                 AsyncStorage.setItem('uToken', response.data.token)
-                AsyncStorage.setItem('name', response.data.name.toString())
+                // AsyncStorage.setItem('name', response.data.name.toString())
                 this.props.navigation.navigate('Home')
               }else{
                 alert('Email or Password is invalid')

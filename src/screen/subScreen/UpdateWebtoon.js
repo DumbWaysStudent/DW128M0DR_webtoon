@@ -5,22 +5,28 @@ import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity} from '
 import HeaderGlobal from '../../components/HeaderGlobal'
 import {stylesGlobal} from '../../assets/styles/stylesGlobal'
 import SearchBar from '../../components/SeacrhBar'
+import axios from '../../utils/API'
 
 export default class UpdateWebtoon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          banners : [{
-            title: 'The Secret of Angel',
-            url: 'https://cdn.imagecomics.com/assets/i/releases/461826/Mercy_issue1_cvr_147581a7be02116581a0f653533a26b1.jpg',
-          }, {
-            title: 'Pasutri Gaje',
-            url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
-          }, {
-            title: 'Young Mom',
-            url: 'https://cdn.imagecomics.com/assets/i/releases/461620/NomenOmen01-2ndPtg-Cover-2x3_147581a7be02116581a0f653533a26b1.jpg',
-          },]
-        };
+         
+        }
+      }
+
+      async componentDidMount() {
+        this.setState({
+          token : await AsyncStorage.getItem('uToken') 
+        })
+        await axios({
+          method: 'POST',
+          url: '/user/1/webtoon',
+          headers: { 'Authorization': `Bearer ${this.state.token}` },
+        }).then(response => {
+            const webtoons = response.data;
+            this.setState({webtoons})
+        })
       }
 
       add = () =>{
@@ -41,7 +47,9 @@ export default class UpdateWebtoon extends Component {
         <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="Create Weebtoon" iconName="md-checkmark" iconPress={this.add}/>
         <Content>
         <SafeAreaView>
-          <SearchBar placeholder="New Title" valueInput={this.state.add} changeInput={text=>this.setState({add:text})}/>
+          <SearchBar placeholder="New Title" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
+          <SearchBar placeholder="Genre" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
+          <SearchBar placeholder="Image" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
       
             <FlatList
                 data={this.state.banners}

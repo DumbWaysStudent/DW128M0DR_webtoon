@@ -40,14 +40,24 @@ export default class Home extends Component {
           }, 2000) 
         })
 
-        await axios({
-          method: 'GET',
-          url: '/webtoons',
-          headers: { 'Authorization': `Bearer ${this.state.token}` },
-        }).then(response => {
-            const webtoons = response.data;
-            this.setState({webtoons})
-        })
+        try {
+          const res = await axios({
+            method: 'GET',
+            url: '/webtoons',
+            headers: { 'Authorization': `Bearer ${this.state.token}` },
+          })
+          this.setState({
+            webtoons:res.data
+          })
+        } catch (error) {
+          console.log(error)
+        }
+
+       
+        // .then(response => {
+        //     const webtoons = response.data;
+        //     this.setState({webtoons})
+        // })
       }      
 
   render() {

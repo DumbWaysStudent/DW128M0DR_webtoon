@@ -22,7 +22,7 @@ export default class Profile extends Component {
     })
     await axios({
       method: 'GET',
-      url: '/user/1/webtoons',
+      url: '/login',
       headers: { 'Authorization': `Bearer ${this.state.token}` },
     }).then(response => {
         const webtoons = response.data;
@@ -37,7 +37,7 @@ export default class Profile extends Component {
         <Content>
         <SafeAreaView>
             <Image source={{uri:this.state.image.uri}} style={styles.profileImg} />
-            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>{this.state.webtoons.name}</Text>
+            <Text style={{alignSelf:'center', fontSize:22, fontWeight:'bold'}}>Momo Satu</Text>
         </SafeAreaView>
         <SafeAreaView style={{marginVertical:30}}>
            <Button success onPress={()=>{this.props.navigation.navigate('UpdateCreation', {create:this.state.webtoons.id})}} style={{borderRadius:10, marginHorizontal:10}}>
