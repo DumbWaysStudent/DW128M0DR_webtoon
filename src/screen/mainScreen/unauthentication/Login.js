@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {View, TextInput, TouchableOpacity,StyleSheet, Text, Image, KeyboardAvoidingView, AsyncStorage} from 'react-native'
 
+
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
-import axios from 'axios'
+import axios from '../../../utils/API'
 
 export default class Login extends Component {
     constructor(){
@@ -35,8 +36,8 @@ export default class Login extends Component {
 
     handleLogin = () => {
         axios({
-            method: 'POST',
-            url: 'http://192.168.1.64:9090/api/v1/login',
+            method: 'post',
+            url: '/signin',
             data:{
                 email:this.state.email,
                 password:this.state.password
@@ -99,6 +100,10 @@ export default class Login extends Component {
 
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
                         <Text style={{ marginTop:25, textAlign: 'center', fontWeight: '700', color:'#828282'}}> don't have an account? <Text style={{color:'#00D163'}}>Register now</Text></Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home')}>
+                        <Text style={{ marginTop:25, textAlign: 'center', fontWeight: 9000, color:'#828282'}}>Skip</Text>
                     </TouchableOpacity>
             </KeyboardAvoidingView>
         )

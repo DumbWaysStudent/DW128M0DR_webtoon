@@ -31,8 +31,7 @@ export default class Home extends Component {
       
       async componentDidMount() {
         this.setState({
-          token : await AsyncStorage.getItem('uToken'),
-          
+
           interval: setInterval(() => {
             this.setState({
               position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
@@ -44,7 +43,7 @@ export default class Home extends Component {
           const res = await axios({
             method: 'GET',
             url: '/webtoons',
-            headers: { 'Authorization': `Bearer ${this.state.token}` },
+            // headers: { 'Authorization': `Bearer ${this.state.token}` },
           })
           this.setState({
             webtoons:res.data

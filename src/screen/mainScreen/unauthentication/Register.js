@@ -37,7 +37,7 @@ export default class Register extends Component {
       handleRegister = () => {
         axios({
             method: 'post',
-            url: '/register',
+            url: '/signup',
             data: {
                 name: this.state.name,
                 email: this.state.email,
