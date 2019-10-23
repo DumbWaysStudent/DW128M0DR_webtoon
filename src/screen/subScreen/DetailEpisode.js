@@ -21,7 +21,7 @@ export default class DetailEpisode extends Component {
         
         await axios({
           method: 'GET',
-          url: `http://192.168.1.64:9090/api/v1/webtoon/${this.props.navigation.getParam('webtoon_id')}/episode/${this.props.navigation.getParam('detail_id')}`,
+          url: `/webtoon/${this.props.navigation.getParam('webtoon_id')}/episode/${this.props.navigation.getParam('detail_id')}`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
         }).then(response => {
           console.log(response.data)

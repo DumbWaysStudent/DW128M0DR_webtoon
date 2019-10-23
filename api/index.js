@@ -14,11 +14,13 @@ const WebtoonsController = require('./controllers/webtoons')
 //middlewares
 const { authenticated } = require('./middleware')
 
-app.group("/api/v1", (router) => {
+app.group("/api/v1", (router) => { 
     router.post('/signin', AuthController.signin)
     router.post('/signup', AuthController.signup)
     
     router.get('/webtoons', WebtoonsController.webtoons)
+    router.get('/search', WebtoonsController.search)
+    router.get('/favorite', authenticated, WebtoonsController.favorite)
     router.get('/webtoon/:webtoon_id/episodes', WebtoonsController.episodes)
     router.get('/webtoon/:webtoon_id/episode/:episode_id', WebtoonsController.pages)
 

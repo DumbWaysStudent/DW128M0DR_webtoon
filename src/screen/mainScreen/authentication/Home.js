@@ -3,11 +3,15 @@ import { Container, Content, Button, Text, Icon,Item, Input} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import Slideshow from 'react-native-image-slider-show'
 import {AsyncStorage} from 'react-native'
+import {connect} from 'react-redux'
+import Axios from 'axios'
+// import handleGetWebtoons from '../../../_redux/_actions/webtoons'
+// import webtoons from '../../../_store/webtoons'
+import * as actionWebtoon from '../../../_redux/_actions/webtoons'
 
 import {stylesGlobal} from '../../../assets/styles/stylesGlobal'
-import axios from '../../../utils/API'
 
-export default class Home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,50 +27,53 @@ export default class Home extends Component {
             title: 'Young Mom',
             url: 'https://cdn.imagecomics.com/assets/i/releases/461620/NomenOmen01-2ndPtg-Cover-2x3_147581a7be02116581a0f653533a26b1.jpg'
           }],
-
-          webtoons:"",
-          token:""
         }
       }
       
-      async componentDidMount() {
-        this.setState({
+       componentDidMount() {
 
-          interval: setInterval(() => {
-            this.setState({
-              position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
-            });
-          }, 2000) 
-        })
+        this.props.handleGetWebtoons()
+        // this.props.dispatch(actionWebtoon.handleGetWebtoons())
 
-        try {
-          const res = await axios({
-            method: 'GET',
-            url: '/webtoons',
-            // headers: { 'Authorization': `Bearer ${this.state.token}` },
-          })
-          this.setState({
-            webtoons:res.data
-          })
-        } catch (error) {
-          console.log(error)
-        }
 
-       
-        // .then(response => {
-        //     const webtoons = response.data;
-        //     this.setState({webtoons})
-        // })
-      }      
 
+
+
+
+
+
+
+
+      //   // console.log(this.props)
+      //   // this.props.dispatch(webtoons())
+      //   // this.setState({
+      //   //   token : await AsyncStorage.getItem('uToken'),
+      //   //   interval: setInterval(() => {
+      //   //     this.setState({
+      //   //       position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
+      //   //     });
+      //   //   }, 2000) 
+      //   // })
+
+      // //  let data = await axios({
+      // //     method: 'GET',
+      // //     url: '/webtoons',
+      // //     headers: { 'Authorization': `Bearer ${this.state.token}` },
+      // //   })
+      // //     this.setState({webtoons: data.data})
+      }  
   render() {
     const {navigate} = this.props.navigation
+    console.log(this.props.data,'=====================================================>')
     return (
       <Container style={stylesGlobal.container}>
-          <Item style={{borderRadius:10, marginLeft:10, marginRight:10, paddingVertical:3}}>
-            <Input placeholder="Search" />
+        <Item style={{backgroundColor: "transparent", borderRadius:10, marginLeft:10, marginRight:10, paddingVertical:3}}>
+          <Input placeholder="Search" onChangeText={text => this.setState({search:text})} />
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('SearchBar', {search:this.state.search})}>
             <Icon name="ios-search" />
-          </Item>
+        </TouchableOpacity>
+        </Item>
+        
         <Content>
         <View>
           <Slideshow
@@ -87,7 +94,7 @@ export default class Home extends Component {
         {/* <Button onPress={console.log(AsyncStorage.getItem('name'))} /> */}
         <SafeAreaView>
             <FlatList
-                data={this.state.webtoons}
+                data={this.props.data}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
@@ -108,11 +115,12 @@ export default class Home extends Component {
 
         <View>
             <Text style={stylesGlobal.title}>All</Text>
+            {console.log(this.props.data,'===============================>momo jancok')}
         </View>
 
         <SafeAreaView>
             <FlatList
-                data={this.state.webtoons}
+                data={this.props.data}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
@@ -143,3 +151,23 @@ const styles = StyleSheet.create({
         color:"#00D163"
     }
 })
+
+const mapStateToProps = state => {
+  return {
+    data: state.manga.data
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleGetWebtoons: () => dispatch(actionWebtoon.handleGetWebtoons())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
+// export default Home;
+
+// connect (mapStateToProps, mapDispatch)

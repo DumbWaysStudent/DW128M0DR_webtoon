@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content, Button, Text, Icon, Fab} from 'native-base'
+import { Container, Content,Text, Icon, Fab} from 'native-base'
 import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, AsyncStorage} from 'react-native'
 
 import HeaderGlobal from '../../components/HeaderGlobal'
@@ -21,7 +21,7 @@ export default class UpdateCreation extends Component {
         })
         await axios({
           method: 'GET',
-          url: '/user/1/webtoons',
+          url: `/user/${this.props.navigation.getParam('user_id')}/webtoons`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
         }).then(response => {
             const webtoons = response.data;
@@ -30,9 +30,10 @@ export default class UpdateCreation extends Component {
       }
 
   render() {
+    // console.log(this.props.navigation.getParam('user_id'))
     return (
       <Container style={stylesGlobal.container}>
-         <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="My WebToon Creatin" />
+         <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="My WebToon Creations" />
         <Content>
         <SafeAreaView>
             <FlatList

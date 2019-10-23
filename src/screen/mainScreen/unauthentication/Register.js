@@ -44,7 +44,7 @@ export default class Register extends Component {
                 password: this.state.password
             }
           })
-          .then((response) => {
+          .then(() => {
                 this.props.navigation.navigate('Home')
           });
       }

@@ -12,6 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       as:"created",
       foreignKey:'createBy'
     })
-  };
+  }
   return webtoons;
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Content, Button, Text, Icon,Left,Body,Right, Header, Title,Input} from 'native-base'
-import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity} from 'react-native'
+import { Container, Content, Text} from 'native-base'
+import {View, FlatList, Image, StyleSheet,SafeAreaView, TouchableOpacity, AsyncStorage} from 'react-native'
 
 import HeaderGlobal from '../../components/HeaderGlobal'
 import {stylesGlobal} from '../../assets/styles/stylesGlobal'
@@ -11,48 +11,57 @@ export default class UpdateWebtoon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-         
+          token:'',
+          id:'',
+          webtoons:'',
+          title:'',
+          genre:''
         }
       }
 
       async componentDidMount() {
         this.setState({
-          token : await AsyncStorage.getItem('uToken') 
+          token : await AsyncStorage.getItem('uToken'),
+          id : await AsyncStorage.getItem('id')
         })
-        await axios({
+        let data = await axios({
           method: 'POST',
-          url: '/user/1/webtoon',
+          url: `/user/${this.state.id}/webtoon`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
-        }).then(response => {
-            const webtoons = response.data;
-            this.setState({webtoons})
         })
+
+        this.setState({webtoons:data.data})
       }
 
-      add = () =>{
-        if (this.state.add === "" || this.state.add === null){
-            alert('Please fill the blank')
-        } else {
-            var obj = {};
-            obj['title'] = this.state.add;
-            obj['url'] =  'https://wallpaperaccess.com/full/24525.jpg';
-            this.state.banners.push(obj)
-            this.setState({banners:this.state.banners})
-        }
+      add = async () =>{
+        this.props.navigation.navigate('UpdateEpisode')
+        let data = await axios({
+          method: 'POST',
+          url: `/user/${this.state.id}/webtoon`,
+          headers: { 'Authorization': `Bearer ${this.state.token}` },
+        })
+            let obj = {};
+            obj['title'] = await this.state.title
+            obj['genre'] = await this.state.genre
+            obj['image'] = 'https://wallpaperaccess.com/full/24525.jpg';
+            this.state.webtoons.push(obj)
+            await this.setState({webtoons:data.data})
+            
     }
 
   render() {
+    console.log(this.state.webtoons)
     return (
       <Container style={stylesGlobal.container}>
         <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="Create Weebtoon" iconName="md-checkmark" iconPress={this.add}/>
         <Content>
         <SafeAreaView>
-          <SearchBar placeholder="New Title" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
-          <SearchBar placeholder="Genre" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
-          <SearchBar placeholder="Image" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/>
+          <SearchBar placeholder="New Title"  changeInput={text=>this.setState({title:text})}/>
+          <SearchBar placeholder="Genre" changeInput={text=>this.setState({genre:text})}/>
+          {/* <SearchBar placeholder="Image" valueInput={this.state.webtoons} changeInput={text=>this.setState({})}/> */}
       
             <FlatList
-                data={this.state.banners}
+                data={this.state.webtoons}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
@@ -72,7 +81,7 @@ export default class UpdateWebtoon extends Component {
             />
             <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress={() => this.props.navigation.navigate('UpdateEpisode')}>
+                onPress={() => this.add()}>
              <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>+Add Episode</Text>
             </TouchableOpacity>
         </SafeAreaView>

@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     user.hasMany(models.webtoons,{
       foreignKey:'createBy'
-    })  }
+    })
+    }
   return user;
 };

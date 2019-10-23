@@ -2,39 +2,51 @@ const Sequelize = require('sequelize')
 const models = require('../database/models')
 const User = models.user
 const Webtoon = models.webtoons
-const Episodes = models.episodes
+const Episodes = models.episodes 
 const Pages = models.pages
+const Favorite = models.favorite
 const Op = Sequelize.Op
 
 module.exports = {
 webtoons:(req,res) => {
-     const {favorite, search} = req.query
-     if(favorite=="true"){
+    Webtoon.findAll().then(webtoons => res.send(webtoons))
+ },
+
+search:(req,res) => {
+    const {search} = req.query
+    if(search){
+       Webtoon.findAll({
+           where  : {
+               title : { [Op.like] : `%${search}%` }
+             }
+       })
+       .then(webtoons => res.send(webtoons))
+
+    } else {
+        null
+    }
+},
+
+favorite:(req,res) => {
+    const {favorite} = req.query
+    if(favorite=="true"){
+       Webtoon.findAll({
+           where:{ 
+               isFavorite:true
+           }
+       })
+       .then(webtoons => res.send(webtoons))
+    } else if(favorite == "false"){
         Webtoon.findAll({
             where:{
-                isFavorite:true
+                isFavorite:false
             }
         })
         .then(webtoons => res.send(webtoons))
-     } else if(favorite == "false"){
-         Webtoon.findAll({
-             where:{
-                 isFavorite:false
-             }
-         })
-         .then(webtoons => res.send(webtoons))
-     } else if(search){
-        Webtoon.findAll({
-            where  : {
-                title : { [Op.like] : `%${search}%` }
-              }
-        })
-        .then(webtoons => res.send(webtoons))
-
-     } else {
-        Webtoon.findAll().then(webtoons => res.send(webtoons))
-     }
- },
+    } else {
+       null
+    }
+},
 
 episodes:(req,res) => {
     Episodes.findAll({

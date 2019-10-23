@@ -35,7 +35,7 @@ export default class Login extends Component {
       }
 
     handleLogin = () => {
-        axios({
+        axios({ 
             method: 'post',
             url: '/signin',
             data:{
@@ -46,8 +46,9 @@ export default class Login extends Component {
           .then((response) => {
             if(typeof response.data.token !== 'undefined'){
                 AsyncStorage.setItem('uToken', response.data.token)
-                // AsyncStorage.setItem('name', response.data.name.toString())
-                this.props.navigation.navigate('Home')
+                AsyncStorage.setItem('name', response.data.user.toString())
+                AsyncStorage.setItem('id', response.data.id.toString())
+                this.props.navigation.navigate('Home',{user_id:response.data.id, name:response.data.name})
               }else{
                 alert('Email or Password is invalid')
               }
@@ -103,7 +104,7 @@ export default class Login extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home')}>
-                        <Text style={{ marginTop:25, textAlign: 'center', fontWeight: 9000, color:'#828282'}}>Skip</Text>
+                        <Text style={{ marginTop:25, textAlign: 'center', fontWeight: '700', color:'#828282'}}>Skip</Text>
                     </TouchableOpacity>
             </KeyboardAvoidingView>
         )

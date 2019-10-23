@@ -19,14 +19,14 @@ export default class Favorite extends Component {
         this.setState({
           token : await AsyncStorage.getItem('uToken') 
         })
-        await axios({
+        const data = await axios({
           method: 'GET',
-          url: '/webtoons?favorite=true',
+          url: '/favorite?favorite=true',
           headers: { 'Authorization': `Bearer ${this.state.token}` },
-        }).then(response => {
-            const webtoons = response.data;
-            this.setState({webtoons})
         })
+          this.setState({
+            webtoons:data.data
+          })
       }
 
   render() {
@@ -44,21 +44,23 @@ export default class Favorite extends Component {
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
-                <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
+                // <TouchableOpacity onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
                     <View style={{backgroundColor:'white',marginHorizontal:15, marginVertical:5, flex:2, flexDirection:'row', borderRadius:15}}>
-                        <View>
-                            <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.image}}/>
-                        </View>
-
-                        <View style={{marginHorizontal:15, alignSelf:'center'}}>
+                    <TouchableOpacity style={{flex:80, flexDirection:'row'}} onPress={()=>navigate('ListEpisode', {url:item.image, title:item.title, id:item.id})}>
+                        <Image style={{width:100, height:100, padding:10, borderRadius:10}} source={{uri : item.image}}/>
+                        <View style={{marginHorizontal:15, alignSelf:'center', flex:40}}>
                             <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>{item.title}</Text>
-                            <View>
-                                <Text style={{color:'#676767', marginBottom:10}}> {item.genre}</Text>
-                            </View>
+                            <Text style={{color:'#676767', marginBottom:10}}> {item.genre}</Text>                          
                         </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={()=>console.log(item.isFavorite)}>
+                        <Icon style={{marginVertical:30, marginRight:20, color:'#bb1542'}} name='remove-circle'/>
+                    </TouchableOpacity>
+                        
                     </View> 
-                </TouchableOpacity>
-                }                
+               
+                }
                 keyExtractor={(item, index) => index.toString()}
             />
         </SafeAreaView>
