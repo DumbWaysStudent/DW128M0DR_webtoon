@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Container, Content, Button, Text, Icon,Item, Input} from 'native-base'
 import {View, FlatList, TouchableOpacity, Image, StyleSheet,SafeAreaView} from 'react-native'
 import Slideshow from 'react-native-image-slider-show'
-import {AsyncStorage} from 'react-native'
 import {connect} from 'react-redux'
-import Axios from 'axios'
 // import handleGetWebtoons from '../../../_redux/_actions/webtoons'
 // import webtoons from '../../../_store/webtoons'
 import * as actionWebtoon from '../../../_redux/_actions/webtoons'
@@ -30,38 +28,10 @@ class Home extends Component {
         }
       }
       
-       componentDidMount() {
-
+      componentDidMount() {
         this.props.handleGetWebtoons()
-        // this.props.dispatch(actionWebtoon.handleGetWebtoons())
-
-
-
-
-
-
-
-
-
-
-      //   // console.log(this.props)
-      //   // this.props.dispatch(webtoons())
-      //   // this.setState({
-      //   //   token : await AsyncStorage.getItem('uToken'),
-      //   //   interval: setInterval(() => {
-      //   //     this.setState({
-      //   //       position: this.state.position === this.state.banners.length ? 0 : this.state.position + 1
-      //   //     });
-      //   //   }, 2000) 
-      //   // })
-
-      // //  let data = await axios({
-      // //     method: 'GET',
-      // //     url: '/webtoons',
-      // //     headers: { 'Authorization': `Bearer ${this.state.token}` },
-      // //   })
-      // //     this.setState({webtoons: data.data})
       }  
+
   render() {
     const {navigate} = this.props.navigation
     console.log(this.props.data,'=====================================================>')
@@ -115,7 +85,7 @@ class Home extends Component {
 
         <View>
             <Text style={stylesGlobal.title}>All</Text>
-            {console.log(this.props.data,'===============================>momo jancok')}
+            {/* <Button onPress={()=>console.log(this.props.data,'===============================>momo jancok')} /> */}
         </View>
 
         <SafeAreaView>
@@ -146,12 +116,6 @@ class Home extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-    btnActive:{
-        color:"#00D163"
-    }
-})
-
 const mapStateToProps = state => {
   return {
     data: state.manga.data
@@ -171,3 +135,9 @@ export default connect(
 // export default Home;
 
 // connect (mapStateToProps, mapDispatch)
+
+const styles = StyleSheet.create({
+  btnActive:{
+      color:"#00D163"
+  }
+})

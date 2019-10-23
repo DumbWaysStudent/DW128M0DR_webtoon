@@ -7,11 +7,11 @@ const initialState = {
 
 export const manga = (state = initialState, action) => {
   switch (action.type) {
-      case 'GET_MANGA':
-          state
-          break; 
-      case 'GET_MANGA_FULFILLED':
-          state = {...state, data : action.payload.data}
+      case 'GET_ALL_FULFILLED':
+          state = {
+            ...state, 
+            data : action.payload.data
+          }
           break;
       default:
           state
