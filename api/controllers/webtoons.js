@@ -67,7 +67,7 @@ pages:(req,res) => {
         include:[{
             model:Episodes,
             where:{
-                webtoon_id:req.params.webtoon_id,
+                // webtoon_id:req.params.webtoon_id,
                 id:req.params.episode_id
             }
         }]
@@ -101,12 +101,13 @@ user:(req, res) => {
 },
 userPost:(req, res) => {
     const { user_id } = req.params
-    const {title,genre,isFavorite,image} = req.body 
+    const {title,genre,isFavorite,image,createBy} = req.body 
     Webtoon.create({
         title,
         genre,
         isFavorite,
         image,
+        createBy
     },{
         where: { 
             id: user_id,
@@ -125,12 +126,13 @@ userPost:(req, res) => {
 
 updateWebtoon:(req,res) => {
     const { user_id, webtoon_id } = req.params
-    const {title,genre,isFavorite,image} = req.body 
+    const {title,genre,isFavorite,image,createBy} = req.body 
     Webtoon.update({
         title,
         genre,
         isFavorite,
-        image
+        image,
+        createBy
     },{
         where: { 
             id: webtoon_id,

@@ -34,7 +34,7 @@ class Home extends Component {
 
   render() {
     const {navigate} = this.props.navigation
-    console.log(this.props.data,'=====================================================>')
+    // console.log(this.props.error,'=====================================================>')
     return (
       <Container style={stylesGlobal.container}>
         <Item style={{backgroundColor: "transparent", borderRadius:10, marginLeft:10, marginRight:10, paddingVertical:3}}>
@@ -118,7 +118,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.manga.data
+    data: state.manga.data,
+    error: state.manga.error
   }
 }
 

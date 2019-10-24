@@ -1,12 +1,19 @@
-import * as types from './../types'
-import axios from 'axios'
+import axios from '../../utils/API'
 
-export const pandingGetWebtoons = bool => ({
-  type:types.GET_ALL_PANDING,
-  payload: bool
-})
-
+// handle webtoons secara global
 export const handleGetWebtoons = () => ({
   type: "GET_ALL",
-  payload: axios.get(`http://192.168.1.64:9090/api/v1/webtoons`)
+  payload: axios.get(`/webtoons`)
+})
+
+// handle episodes
+export const handleGetEpisodes = id => ({
+  type: "GET_EPISODES",
+  payload: axios.get(`/webtoon/${id}/episodes`)
+})
+
+// handle page
+export const handleGetPages = (webtoon_id, detail_id) => ({
+  type: "GET_PAGES",
+  payload: axios.get(`/webtoon/${webtoon_id}/episode/${detail_id}`)
 })

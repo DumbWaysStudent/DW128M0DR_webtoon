@@ -1,14 +1,12 @@
-import * as types from './../types'
-
 const initialState = {
   data : [],
   isLoading : true,
   error: null
 }
 
-export const manga = (state = initialState, action) => {
+export const episodes = (state = initialState, action) => {
   switch (action.type) {
-      case 'GET_ALL_FULFILLED':
+      case 'GET_EPISODES_FULFILLED':
           state = {
             ...state, 
             data : action.payload.data

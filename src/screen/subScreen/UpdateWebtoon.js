@@ -24,36 +24,30 @@ export default class UpdateWebtoon extends Component {
           token : await AsyncStorage.getItem('uToken'),
           id : await AsyncStorage.getItem('id')
         })
-        let data = await axios({
-          method: 'POST',
-          url: `/user/${this.state.id}/webtoon`,
-          headers: { 'Authorization': `Bearer ${this.state.token}` },
-        })
-
-        this.setState({webtoons:data.data})
       }
 
-      add = async () =>{
-        this.props.navigation.navigate('UpdateEpisode')
-        let data = await axios({
+      add = () =>{
+        let data = axios({
           method: 'POST',
-          url: `/user/${this.state.id}/webtoon`,
+          url: `/user/1/webtoon`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
-        })
-            let obj = {};
-            obj['title'] = await this.state.title
-            obj['genre'] = await this.state.genre
-            obj['image'] = 'https://wallpaperaccess.com/full/24525.jpg';
-            this.state.webtoons.push(obj)
-            await this.setState({webtoons:data.data})
+          data:{
+            title:this.state.title,
+            genre:this.state.genre,
+            isFavorite:0,
+            createBy:this.state.id
             
+          }
+        })
+
+        this.props.navigation.navigate('UpdateCreation')
     }
 
   render() {
-    console.log(this.state.webtoons)
+    console.log(this.state.createBy,'+++++++++++++++++++++++++++++')
     return (
       <Container style={stylesGlobal.container}>
-        <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="Create Weebtoon" iconName="md-checkmark" iconPress={this.add}/>
+        <HeaderGlobal onPressBack={()=>this.props.navigation.goBack()} title="Create Weebtoon" iconName="md-checkmark" iconPress={this.episode}/>
         <Content>
         <SafeAreaView>
           <SearchBar placeholder="New Title"  changeInput={text=>this.setState({title:text})}/>
@@ -82,7 +76,7 @@ export default class UpdateWebtoon extends Component {
             <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => this.add()}>
-             <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>+Add Episode</Text>
+             <Text style={{color: '#fff', textAlign: 'center', fontWeight: '700'}}>+Add Webtoons</Text>
             </TouchableOpacity>
         </SafeAreaView>
         </Content>

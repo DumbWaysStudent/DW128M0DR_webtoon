@@ -1,34 +1,21 @@
 import React, { Component } from 'react'
 import { Container, Content} from 'native-base'
 import {View, FlatList, Image, StyleSheet,SafeAreaView, Share, AsyncStorage} from 'react-native'
+import {connect} from 'react-redux'
 
+import * as actionPage from '../../_redux/_actions/webtoons'
 import HeaderGlobal from '../../components/HeaderGlobal'
-import axios from '../../utils/API'
 
-export default class DetailEpisode extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          token:'',
-          webtoons:'',
-        }
-      }
-      
-      async componentDidMount() {
-        this.setState({
-          token : await AsyncStorage.getItem('uToken')
-        })
-        
-        await axios({
-          method: 'GET',
-          url: `/webtoon/${this.props.navigation.getParam('webtoon_id')}/episode/${this.props.navigation.getParam('detail_id')}`,
-          headers: { 'Authorization': `Bearer ${this.state.token}` },
-        }).then(response => {
-          console.log(response.data)
-            const webtoons = response.data;
-            this.setState({webtoons})
-        })
-        console.log(this.state.webtoons)
+class DetailEpisode extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+       webtoon_id : this.props.navigation.getParam('webtoons_id'),
+       detail_id : this.props.navigation.getParam('detail_id')
+    }
+    }   
+      componentDidMount() {
+       this.props.handleGetPages(this.state.webtoon_id, this.state.detail_id)
       }
 
 
@@ -46,7 +33,7 @@ export default class DetailEpisode extends Component {
         <Content>
         <SafeAreaView>
             <FlatList
-                data={this.state.webtoons}
+                data={this.props.data}
                 horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) =>
@@ -66,6 +53,18 @@ export default class DetailEpisode extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    data: state.pages.data
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleGetPages : (webtoon_id, detail_id) => dispatch (actionPage.handleGetPages(webtoon_id, detail_id))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DetailEpisode)
 
 const styles = StyleSheet.create({
     title:{

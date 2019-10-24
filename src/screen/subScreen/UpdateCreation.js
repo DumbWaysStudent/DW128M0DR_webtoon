@@ -19,7 +19,7 @@ export default class UpdateCreation extends Component {
         this.setState({
           token : await AsyncStorage.getItem('uToken') 
         })
-        await axios({
+        axios({
           method: 'GET',
           url: `/user/${this.props.navigation.getParam('user_id')}/webtoons`,
           headers: { 'Authorization': `Bearer ${this.state.token}` },
